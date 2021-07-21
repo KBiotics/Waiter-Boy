@@ -1,5 +1,6 @@
 <?php
 include 'config1.php';
+$o_id=$_SESSION["order_id"];
  ?>
 
  <!DOCTYPE html>
@@ -63,6 +64,7 @@ include 'config1.php';
  padding: 10px;
  }
 
+
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
@@ -81,10 +83,12 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="#home">Home</a>
+     <a class="active" href="#home">Order</a>
+     <a href="#home">PAN</a>
      <a href="waiter_n_cstmr.php">New Customer</a>
      <a href="Menu.php">Histroy</a>
    </div>
+   <?php echo "$o_id"; ?>
  </div>
 
 <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
@@ -112,7 +116,6 @@ $result = mysqli_query($con,$sql_query1);
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['Dname'] . "</td>";
             echo "<td>" . $row['Dprice'].".00" ."</td>";
-        //echo "<td>" . $row['lname'] . "</td>";
 
             echo "</tr>";
       }?>
@@ -127,7 +130,9 @@ $result = mysqli_query($con,$sql_query1);
           {
               table.rows[i].onclick = function()
               {
-       document.getElementById("id").value = this.cells[0].innerHTML;
+                document.getElementById("id").value = this.cells[0].innerHTML;
+                document.getElementById("name").value = this.cells[1].innerHTML;
+                document.getElementById("price").value = this.cells[2].innerHTML;
 
               };
           }
@@ -135,12 +140,9 @@ $result = mysqli_query($con,$sql_query1);
    </script>
 
 <form method=post action="">
-  <!-- First Name:<input type="text" name="fname" id="fname"><br><br> -->
-  <!-- Middle Name:<input type="text" name="lname" id="mname"><br><br> -->
-  <!-- Last Name:<input type="text" name="age" id="lname"><br><br> -->
 <input type="hidden" name="id" id="id"><br>
-<input type=submit id=submit name=submit value="view more" class="viewmore">
-
+<input type="number" name="qty" value="" placeholder="Qty.">
+<input type=submit id=atp name=atp value="Add to Pan" class="atp">
 </form>
  </div>
 
@@ -165,13 +167,53 @@ $result = mysqli_query($con,$sql_query1);
          {
              table.rows[i].onclick = function()
              {
-                  //rIndex = this.rowIndex;
-                  <!-- document.getElementById("fname").value = this.cells[0].innerHTML; -->
-                  <!-- document.getElementById("mname").value = this.cells[1].innerHTML; -->
-                  <!-- document.getElementById("lname").value = this.cells[2].innerHTML; -->
-     document.getElementById("uid").value = this.cells[0].innerHTML;
+     document.getElementById("id").value = this.cells[0].innerHTML;
 
              };
          }
 
   </script>
+
+<?php
+if(isset($_POST['atp'])){
+  $D="D";
+  $qty="qty";
+  $sql_query1 = "SELECT * FROM `cstmr`WHERE id='".$o_id."'" ;
+          $result = mysqli_query($con,$sql_query1);
+      while($row = mysqli_fetch_assoc($result))
+      {
+       $D_temp=$row['D_temp'];
+       $qty_temp=$row['qty_temp'];
+
+       $D_temp=$D_temp+1;
+       $qty_temp=$qty_temp+1;
+       echo "$qty_temp";
+      }
+      $D="$D$D_temp";
+      $qty="$qty$qty_temp";
+
+ $Dname = mysqli_real_escape_string($con,$_POST['id']);
+ $qtyo = mysqli_real_escape_string($con,$_POST['qty']);
+ $sql_query_update = "UPDATE cstmr SET $D='".$Dname."' ,$qty='".$qtyo."' ,D_temp='".$D_temp."' ,qty_temp='".$qty_temp."' WHERE id='".$o_id."'";
+ $result_update = mysqli_query($con,$sql_query_update);
+   if($result_update==0)
+   {
+     echo "not updated";
+
+   }
+   else
+   {
+     //echo "sucessfully updated";
+     ?><script>
+
+              alert("sucessfully updated");
+              </script>
+       <?php
+   }?>
+   <div class="pan">
+     <?php echo $D_temp ?>
+   </div>
+   <?php
+
+   }
+ ?>

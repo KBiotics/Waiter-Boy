@@ -109,6 +109,40 @@ include 'config1.php';
    </div>
  </div>
 
+ <div class="Dlist">
+   <?php
+   $sql_query1 = "SELECT * FROM `menu` ";
+$result = mysqli_query($con,$sql_query1);
+    ?>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div style="overflow-x:auto;">
+    <table table id="table" class="table table-bordered table-striped mb-0">
+      <col style="width:15%">
+      <col style="width:60%">
+      <col style="width:25%">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th> ₹ Price</th>
+      <!-- <th>Last Name</th> -->
+     </tr>
+      <tbody id="myTable">
+    <?php while($row = mysqli_fetch_assoc($result))
+      {
+        echo "<tr>";
+        echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['Dname'] . "</td>";
+            echo "<td>" . $row['Dprice'].".00" ."</td>";
+        //echo "<td>" . $row['lname'] . "</td>";
+
+            echo "</tr>";
+      }?>
+    </table>
+    </div>
+  </div>
+
+ </div>
+
  </body>
  </html>
 

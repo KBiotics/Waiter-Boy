@@ -83,8 +83,8 @@ $o_id=$_SESSION["order_id"];
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="#home">Order</a>
-     <a href="#home">PAN</a>
+     <a class="active" href="waiter_order.php">Order</a>
+     <a href="waiter_pan.php">PAN</a>
      <a href="waiter_n_cstmr.php">New Customer</a>
      <a href="Menu.php">Histroy</a>
    </div>

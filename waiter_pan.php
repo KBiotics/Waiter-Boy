@@ -233,6 +233,8 @@ $o_id=$_SESSION["order_id"];
                            }
                            $fprice12=$qty12*$D12P;
 
+                           $total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <div style="overflow-x:auto;">
@@ -308,9 +310,9 @@ $o_id=$_SESSION["order_id"];
           <td><?php echo "$fprice12"; ?></td>
         </tr>
         <tr>
-          <td><?php echo "$qty1 $D1N"; ?></td>
-          <td><?php echo "$D1P"; ?></td>
-          <td><?php echo "$fprice1"; ?></td>
+          <td>Total</td>
+          <td></td>
+          <td><?php echo "$total"; ?></td>
         </tr>
 
     </table>
@@ -334,9 +336,8 @@ $o_id=$_SESSION["order_id"];
    </script>
 
 <form method=post action="">
-<input type="hidden" name="id" id="id"><br>
-<input type="number" name="qty" value="" placeholder="Qty.">
-<input type=submit id=atp name=atp value="Add to Pan" class="atp">
+<input type="hidden" name="status" value="conformed"><br>
+<input type=submit name=order value="Conform Order">
 </form>
  </div>
 
@@ -369,26 +370,10 @@ $o_id=$_SESSION["order_id"];
   </script>
 
 <?php
-if(isset($_POST['atp'])){
-  $D="D";
-  $qty="qty";
-  $sql_query1 = "SELECT * FROM `cstmr`WHERE id='".$o_id."'" ;
-          $result = mysqli_query($con,$sql_query1);
-      while($row = mysqli_fetch_assoc($result))
-      {
-       $D_temp=$row['D_temp'];
-       $qty_temp=$row['qty_temp'];
-
-       $D_temp=$D_temp+1;
-       $qty_temp=$qty_temp+1;
-       echo "$qty_temp";
-      }
-      $D="$D$D_temp";
-      $qty="$qty$qty_temp";
-
- $Dname = mysqli_real_escape_string($con,$_POST['id']);
- $qtyo = mysqli_real_escape_string($con,$_POST['qty']);
- $sql_query_update = "UPDATE cstmr SET $D='".$Dname."' ,$qty='".$qtyo."' ,D_temp='".$D_temp."' ,qty_temp='".$qty_temp."' WHERE id='".$o_id."'";
+if(isset($_POST['order'])){
+ $status = mysqli_real_escape_string($con,$_POST['status']);
+ $dateI = date("Y-m-d h:i:sa");
+ $sql_query_update = "UPDATE cstmr SET status='".$status."' ,dateI='".$dateI."' WHERE id='".$o_id."'";
  $result_update = mysqli_query($con,$sql_query_update);
    if($result_update==0)
    {

@@ -87,37 +87,9 @@ include 'config1.php';
    </div>
  </div>
 
- <div class="container">
-   <!-- Trigger the modal with a button -->
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Manu</button>
-
-   <!-- Modal -->
-   <div class="modal fade" id="myModal" role="dialog">
-     <div class="modal-dialog modal-lg">
-       <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">Modal Header</h4>
-         </div>
-         <div class="modal-body">
-           <center>New Dish<center>
-             <form class="" action="" method="post">
-               <input type="text" name="Dname" value="" placeholder="Dish Name">
-               <input type="text" name="Dprice" value="" placeholder="Price">
-               <input type="submit" name="submit" value="submit">
-             </form>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -128,6 +100,21 @@ $result = mysqli_query($con,$sql_query1);
         $o_id=$row['id'];
         $cname=$row['name'];
         $ctno=$row['tno'];
+        $status_s=$row['status'];
+        if ($status_s=='Cooking') {
+          $status_s="Disabled";
+        }
+        else {
+          $status_s="";
+        }
+
+        $status_c=$row['status'];
+        if ($status_c=='conformed') {
+          $status_c="Disabled";
+        }
+        else {
+          $status_c="";
+        }
         $sql_query15 = "SELECT * FROM `cstmr` WHERE id='".$o_id."'";
 $result15 = mysqli_query($con,$sql_query15);
 while($row = mysqli_fetch_assoc($result15))
@@ -356,6 +343,17 @@ $qty12=$row['qty12'];
             echo  "$fD_name10"."<br>" ;
             echo  "$fD_name11"."<br>" ;
             echo  "$fD_name12"."<br>" ;
+            //echo  "$status"."<br>" ;
+
+            echo "<form action=startcomplete.php method=post >";
+            echo "<input type=hidden name=o_id value=$o_id>";
+            echo "<input type=submit name=start value=Start $status_s>";
+            echo "</form>";
+
+            echo "<form action=startcomplete.php method=post >";
+            echo "<input type=hidden name=o_idc value=$o_id>";
+            echo "<input type=submit name=complete value=Complete $status_c>";
+            echo "</form>";
 
             echo "</td>";
       }?>
@@ -367,28 +365,3 @@ $qty12=$row['qty12'];
 
  </body>
  </html>
-
- <?php
- if(isset($_POST['submit'])){
- $Dname = mysqli_real_escape_string($con,$_POST['Dname']);
- $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
- $Stackt = "a";
- $sql_query_insert = "INSERT INTO menu(Dname, Dprice, StackT) values ('$Dname',' $Dprice','$Stackt')";
- $result_insert = mysqli_query($con,$sql_query_insert);
-  if($result_insert==0)
-  {
-    echo "not inserted";
-
-  }
-  else
-  {
-    //echo "sucessfully inserted";
-    ?><script>
-
-             alert("Sucessfull");
-             </script>
-      <?php
-  }
-
-  }
-  ?>

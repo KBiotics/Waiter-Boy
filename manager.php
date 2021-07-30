@@ -60,7 +60,10 @@ include 'config1.php';
     table-layout:fixed;
  }
  td{
-   width: 300px;
+
+ }
+ .card{
+   width: 310px;
    height:500px;
  }
 
@@ -90,7 +93,7 @@ include 'config1.php';
 
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -101,20 +104,12 @@ $result = mysqli_query($con,$sql_query1);
         $o_id=$row['id'];
         $cname=$row['name'];
         $ctno=$row['tno'];
-        $status_s=$row['status'];
-        if ($status_s=='Cooking') {
+        $status_s=$row['pay_m'];
+        if ($status_s!="") {
           $status_s="Disabled";
         }
         else {
           $status_s="";
-        }
-
-        $status_c=$row['status'];
-        if ($status_c=='conformed') {
-          $status_c="Disabled";
-        }
-        else {
-          $status_c="";
         }
         $sql_query15 = "SELECT * FROM `cstmr` WHERE id='".$o_id."'";
 $result15 = mysqli_query($con,$sql_query15);
@@ -144,6 +139,7 @@ $qty9=$row['qty9'];
 $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
+$status_l=$row['status'];
 }
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
@@ -158,7 +154,7 @@ $qty12=$row['qty12'];
        $fD_name1="-";
      }
      else {
-       $fD_name1="$qty1 $D1N";
+       $fD_name1="$qty1 $D1N $D1P x $qty1= $fprice1";
      }
 
      $sql_query2 = "SELECT * FROM `menu` WHERE id='".$D2."'";
@@ -173,7 +169,7 @@ $qty12=$row['qty12'];
          $fD_name2="-";
        }
        else {
-         $fD_name2="$qty2 $D2N";
+         $fD_name2="$qty2 $D2N $D2P x $qty2= $fprice2";
        }
 
        $sql_query3 = "SELECT * FROM `menu` WHERE id='".$D3."'";
@@ -188,7 +184,7 @@ $qty12=$row['qty12'];
            $fD_name3="-";
          }
          else {
-           $fD_name3="$qty3 $D3N";
+           $fD_name3="$qty3 $D3N $D3P x $qty3= $fprice3";
          }
 
          $sql_query4 = "SELECT * FROM `menu` WHERE id='".$D4."'";
@@ -203,7 +199,7 @@ $qty12=$row['qty12'];
              $fD_name4="-";
            }
            else {
-             $fD_name4="$qty4 $D4N";
+             $fD_name4="$qty4 $D4N $D4P x $qty4= $fprice4";
            }
 
            $sql_query5 = "SELECT * FROM `menu` WHERE id='".$D5."'";
@@ -218,7 +214,7 @@ $qty12=$row['qty12'];
                $fD_name5="-";
              }
              else {
-               $fD_name5="$qty5 $D5N";
+               $fD_name5="$qty5 $D5N $D5P x $qty5= $fprice5";
              }
 
              $sql_query6 = "SELECT * FROM `menu` WHERE id='".$D6."'";
@@ -233,7 +229,7 @@ $qty12=$row['qty12'];
                  $fD_name6="-";
                }
                else {
-                 $fD_name6="$qty6 $D6N";
+                 $fD_name6="$qty6 $D6N $D6P x $qty6= $fprice6";
                }
 
                $sql_query7 = "SELECT * FROM `menu` WHERE id='".$D7."'";
@@ -248,7 +244,7 @@ $qty12=$row['qty12'];
                    $fD_name7="-";
                  }
                  else {
-                   $fD_name7="$qty7 $D7N";
+                   $fD_name7="$qty7 $D7N $D7P x $qty7= $fprice7";
                  }
 
                  $sql_query8 = "SELECT * FROM `menu` WHERE id='".$D8."'";
@@ -263,7 +259,7 @@ $qty12=$row['qty12'];
                      $fD_name8="-";
                    }
                    else {
-                     $fD_name8="$qty8 $D8N";
+                     $fD_name8="$qty8 $D8N $D8P x $qty8= $fprice8";
                    }
 
                    $sql_query9 = "SELECT * FROM `menu` WHERE id='".$D9."'";
@@ -278,7 +274,7 @@ $qty12=$row['qty12'];
                        $fD_name9="-";
                      }
                      else {
-                       $fD_name9="$qty9 $D9N";
+                       $fD_name9="$qty9 $D9N $D9P x $qty9= $fprice9";
                      }
 
                      $sql_query10 = "SELECT * FROM `menu` WHERE id='".$D10."'";
@@ -293,7 +289,7 @@ $qty12=$row['qty12'];
                          $fD_name10="-";
                        }
                        else {
-                         $fD_name10="$qty10 $D10N";
+                         $fD_name10="$qty10 $D10N $D10P x $qty10= $fprice10";
                        }
 
                        $sql_query11 = "SELECT * FROM `menu` WHERE id='".$D11."'";
@@ -308,7 +304,7 @@ $qty12=$row['qty12'];
                            $fD_name11="-";
                          }
                          else {
-                           $fD_name11="$qty11 $D11N";
+                           $fD_name11="$qty11 $D11N $D11P x $qty11= $fprice11";
                          }
 
                          $sql_query12 = "SELECT * FROM `menu` WHERE id='".$D12."'";
@@ -323,15 +319,16 @@ $qty12=$row['qty12'];
                              $fD_name12="-";
                            }
                            else {
-                             $fD_name12="$qty12 $D12N";
+                             $fD_name12="$qty12 $D12N $D12P x $qty12= $fprice12";
                            }
 
-                           //$total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
-        echo "<td>";
+                           $total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+        echo "<td class=card>";
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
             echo "<h3><center>Order</center></h3>";
+            echo  "<h4><center>Status : ".$status_l."</center></h4><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
             echo  "$fD_name3"."<br>" ;
@@ -344,24 +341,29 @@ $qty12=$row['qty12'];
             echo  "$fD_name10"."<br>" ;
             echo  "$fD_name11"."<br>" ;
             echo  "$fD_name12"."<br>" ;
-            //echo  "$status"."<br>" ;
+            echo  "Total : ₹$total"."<br>" ;
 
-            echo "<form action=startcomplete.php method=post >";
+            echo "<form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
-            echo "<input type=submit name=start value=Start $status_s>";
+            echo "Payment Method : <br><input type=radio name=paym value=Cash required> Cash ";
+            echo "<input type=radio name=paym value=Card required> Card ";
+            echo "<input type=radio name=paym value=UPI required> UPI ";
+            echo "<input type=radio name=paym value=Cash+UPI required> Cash + UPI ";
+            echo "<input type=radio name=paym value=Other required> Other<br>";
+            echo "<input type=submit name=payment value=Submit $status_s>";
             echo "</form>";
 
-            echo "<form action=startcomplete.php method=post >";
-            echo "<input type=hidden name=o_idc value=$o_id>";
-            echo "<input type=submit name=complete value=Complete $status_c>";
+            echo "OR<br><form action=payment\pay.php method=post >";
+            echo "<input type=hidden name=o_id value=$o_id>";
+            echo "<input type=hidden name=cname value=$cname>";
+            echo "<input type=hidden name=money value=$total>";
+            echo "<input type=submit name=submit value=Pay $status_s>";
             echo "</form>";
-
             echo "</td>";
       }?>
     </table>
     </div>
   </div>
-
  </div>
  </body>
  </html>

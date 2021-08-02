@@ -143,6 +143,7 @@ $qty9=$row['qty9'];
 $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
+$status=$row['status'];
 }
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
@@ -331,6 +332,7 @@ $qty12=$row['qty12'];
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
             echo "<h3><center>Order</center></h3>";
+            echo  "<h4><center>Status : ".$status."</center></h4><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
             echo  "$fD_name3"."<br>" ;

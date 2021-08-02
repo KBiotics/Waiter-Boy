@@ -44,12 +44,13 @@ if ($success === true)
                       alert("Your payment was successful");
                       </script>
                <?php
+               $total=$_SESSION["money"];
              $pay_m="Razorpay";
              $pay_l=$_POST['razorpay_payment_id'];
              $o_ref = $o_id;
              $dateIII = date("Y-m-d h:i:sa");
              echo "$pay_m";
-             $sql_query_update = "UPDATE cstmr SET pay_m='".$pay_m."' ,pay_l='".$pay_l."' ,dateIII='".$dateIII."' WHERE id='".$o_ref."'";
+             $sql_query_update = "UPDATE cstmr SET pay_m='".$pay_m."' ,pay_l='".$pay_l."' ,dateIII='".$dateIII."' ,total='".$total."' WHERE id='".$o_ref."'";
              $result_update = mysqli_query($con,$sql_query_update);
                if($result_update==0)
                {

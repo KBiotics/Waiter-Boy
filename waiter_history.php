@@ -62,28 +62,6 @@ include 'config1.php';
  width: 97%;
  padding: 10px;
  }
- .home{
-   height: 300px;
-   width: 600px;
-   background-color: #ddf2ec;
-   margin: auto;
-   margin-top: 50px;
-   padding: 10px;
-   border-radius: 30px;
- }
-.g_button{
-height: 100%;
-width: 100%;
-border-radius: 90px;
-background-color: white;
-}
-.g_table{
-  margin: auto;
-}
-.g_table td{
-  height: 140px;
-  width: 280px;
-}
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -95,35 +73,81 @@ background-color: white;
    .header-right {
      float: none;
    }
-   .home{
-     height: 300px;
-     width: 90%;
-     background-color: #ddf2ec;
-     margin: auto;
-   }
  }
  </style>
  </head>
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo WaiterBoy</a>
+   <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
+     <a class="active" href="#home">Home</a>
+     <a href="waiter_n_cstmr.php">New Customer</a>
+     <a href="Menu.php">Histroy</a>
    </div>
  </div>
-<div class="home">
-  <table class="g_table">
-    <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter.php';">
-        <img src="https://www.pngall.com/wp-content/uploads/2016/04/Home-Download-PNG.png" style="height: 100px; width:100px;  "><br>Home</button></td>
-      <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="https://iconarchive.com/download/i6083/custom-icon-design/pretty-office-3/Add-Male-User.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
-    </tr>
-    <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_history.php';"><img src="https://icons.veryicon.com/png/o/miscellaneous/small-green-icon/history-36.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
-      <td><button  class="g_button" onclick="window.location.href='waiter.php';">X</button></td>
-    </tr>
-  </table>
-</div>
+
+<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
+ <div class="Dlist">
+   <?php
+   $sql_query1 = "SELECT * FROM `cstmr` ORDER BY(id) DESC ";
+$result = mysqli_query($con,$sql_query1);
+    ?>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div style="overflow-x:auto;">
+    <table table id="table" class="table table-bordered table-striped mb-0">
+      <col style="width:15%">
+      <col style="width:60%">
+      <col style="width:25%">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th> Status</th>
+      <!-- <th>Last Name</th> -->
+     </tr>
+      <tbody id="myTable">
+    <?php while($row = mysqli_fetch_assoc($result))
+      {
+        $id=$row['id'];
+        echo "<tr>";
+        echo "<td>" . $id . "</td>";
+            echo "<td>" . $row['name'] ."</td>";
+            echo "<td>" . $row['status'] ."</td>";
+            echo "<td>";
+            echo "<br><form action=waiter_order2.php method=post >";
+            echo "<input type=hidden name=o_id value=$id>";
+            echo "<input type=submit name=submit value=Modify>";
+            echo "</form>";
+             echo"</td>";
+      }?>
+    </table>
+    </div>
+  </div>
+  <script>
+
+          var table = document.getElementById('table');
+
+          for(var i = 1; i < table.rows.length; i++)
+          {
+              table.rows[i].onclick = function()
+              {
+       document.getElementById("id").value = this.cells[0].innerHTML;
+
+              };
+          }
+
+   </script>
+
+<form method=post action="">
+  <!-- First Name:<input type="text" name="fname" id="fname"><br><br> -->
+  <!-- Middle Name:<input type="text" name="lname" id="mname"><br><br> -->
+  <!-- Last Name:<input type="text" name="age" id="lname"><br><br> -->
+<input type="hidden" name="id" id="id"><br>
+<input type=submit id=submit name=submit value="view more" class="viewmore">
+
+</form>
+ </div>
+
  </body>
  </html>
 

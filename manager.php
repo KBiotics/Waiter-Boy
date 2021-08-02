@@ -345,6 +345,7 @@ $status_l=$row['status'];
 
             echo "<form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
+            echo "<input type=hidden name=total value=$total>";
             echo "Payment Method : <br><input type=radio name=paym value=Cash required> Cash ";
             echo "<input type=radio name=paym value=Card required> Card ";
             echo "<input type=radio name=paym value=UPI required> UPI ";
@@ -357,7 +358,7 @@ $status_l=$row['status'];
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=cname value=$cname>";
             echo "<input type=hidden name=money value=$total>";
-            echo "<input type=submit name=submit value=Pay $status_s>";
+            echo "<input type=submit name=submit value=Pay_Now_with_Razorpay $status_s>";
             echo "</form>";
             echo "</td>";
       }?>

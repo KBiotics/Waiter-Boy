@@ -336,8 +336,8 @@ $o_id=$_SESSION["order_id"];
    </script>
 
 <form method=post action="">
-<input type="hidden" name="status" value="conformed"><br>
-<input type=submit name=order value="Conform Order">
+<input type="hidden" name="status" value="confirmed"><br>
+<input type=submit name=order value="confirm Order">
 </form>
  </div>
 

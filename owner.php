@@ -93,19 +93,104 @@ include 'config1.php';
      <a href="Menu.php">Menu</a>
    </div>
  </div>
- <?php
- $sql_query1 = "SELECT SUM(column_name) FROM table_name WHERE condition; ";
-$result = mysqli_query($con,$sql_query1);
-  ?>
+
  <div class="upper_box">
    <table border="2" class="table_summary">
      <tr>
-       <td>1</td>
-       <td>2</td>
+       <td><center>Cash<br>
+         <?php
+         $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Cash' ";
+         $result_all = mysqli_query($con,$sql_query_sum_all);
+         $sum_all=0;
+         while($row = mysqli_fetch_assoc($result_all))
+           {
+             $o_id=$row['total'];
+             $sum_all=$sum_all+$o_id;
+           }
+           echo "$sum_all";
+          ?></center>
+       </td>
+       <td> <center>Card<br><?php
+        $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Card' ";
+        $result_all = mysqli_query($con,$sql_query_sum_all);
+        $sum_all=0;
+        while($row = mysqli_fetch_assoc($result_all))
+          {
+            $o_id=$row['total'];
+            $sum_all=$sum_all+$o_id;
+          }
+          echo "$sum_all";
+         ?></center>
+       </td>
      </tr>
      <tr>
-       <td>3</td>
-       <td>4</td>
+       <td><center>UPI<br> <?php
+        $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='UPI' ";
+        $result_all = mysqli_query($con,$sql_query_sum_all);
+        $sum_all=0;
+        while($row = mysqli_fetch_assoc($result_all))
+          {
+            $o_id=$row['total'];
+            $sum_all=$sum_all+$o_id;
+          }
+          echo "$sum_all";
+         ?></center>
+       </td>
+       <td><center>Cash+UPI<br>
+         <?php
+         $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Cash+UPI'";
+         $result_all = mysqli_query($con,$sql_query_sum_all);
+         $sum_all=0;
+         while($row = mysqli_fetch_assoc($result_all))
+           {
+             $o_id=$row['total'];
+             $sum_all=$sum_all+$o_id;
+           }
+           echo "$sum_all";
+          ?></center>
+        </td>
+     </tr>
+     <tr>
+       <td><center>Razorpay<br>
+         <?php
+$sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Razorpay'";
+$result_all = mysqli_query($con,$sql_query_sum_all);
+$sum_all=0;
+while($row = mysqli_fetch_assoc($result_all))
+  {
+    $o_id=$row['total'];
+    $sum_all=$sum_all+$o_id;
+  }
+  echo "$sum_all";
+ ?></center>
+       </td>
+       <td><center>Other<br> <?php
+ $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Other'";
+ $result_all = mysqli_query($con,$sql_query_sum_all);
+ $sum_all=0;
+ while($row = mysqli_fetch_assoc($result_all))
+   {
+     $o_id=$row['total'];
+     $sum_all=$sum_all+$o_id;
+   }
+   echo "$sum_all";
+  ?>
+</td></center>
+     </tr>
+     <tr>
+       <td colspan="2"><center>Total<br>
+         <?php
+         $sql_query_sum_all = "SELECT * FROM `cstmr` ";
+         $result_all = mysqli_query($con,$sql_query_sum_all);
+         $sum_all=0;
+         while($row = mysqli_fetch_assoc($result_all))
+           {
+             $o_id=$row['total'];
+             $sum_all=$sum_all+$o_id;
+           }
+           echo "$sum_all";
+          ?></center>
+        </td>
      </tr>
    </table>
  </div>
@@ -158,6 +243,11 @@ $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status_l=$row['status'];
+$dateI=$row['dateI'];
+$dateII=$row['dateII'];
+$dateIII=$row['dateII'];
+$pay_method=$row['pay_m'];
+$pay_ref=$row['pay_l'];
 }
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
@@ -347,6 +437,9 @@ $status_l=$row['status'];
             echo  "Table No : ".$ctno."<br>" ;
             echo "<h3><center>Order</center></h3>";
             echo  "<h4><center>Status : ".$status_l."</center></h4><br>" ;
+            echo  "<center>Confirmed : ".$dateI."</center><br>" ;
+            echo  "<center>Cooked : ".$dateII."</center><br>" ;
+            echo  "<center>Served : ".$dateIII."</center><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
             echo  "$fD_name3"."<br>" ;
@@ -363,19 +456,8 @@ $status_l=$row['status'];
 
             echo "<form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
-            echo "Payment Method : <br><input type=radio name=paym value=Cash required> Cash ";
-            echo "<input type=radio name=paym value=Card required> Card ";
-            echo "<input type=radio name=paym value=UPI required> UPI ";
-            echo "<input type=radio name=paym value=Cash+UPI required> Cash + UPI ";
-            echo "<input type=radio name=paym value=Other required> Other<br>";
-            echo "<input type=submit name=payment value=Submit $status_s>";
-            echo "</form>";
-
-            echo "OR<br><form action=payment\pay.php method=post >";
-            echo "<input type=hidden name=o_id value=$o_id>";
-            echo "<input type=hidden name=cname value=$cname>";
-            echo "<input type=hidden name=money value=$total>";
-            echo "<input type=submit name=submit value=Pay $status_s>";
+            echo "Payment Method : $pay_method<br>";
+            echo "Payment Ref. : $pay_ref<br>";
             echo "</form>";
             echo "</td>";
       }?>

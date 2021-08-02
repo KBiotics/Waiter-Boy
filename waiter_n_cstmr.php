@@ -9,6 +9,7 @@ include 'config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -56,6 +57,20 @@ include 'config1.php';
    padding: 0px 0px;
    margin-left: 0px;
  }
+ .details{
+   margin: auto;
+   height: 300px;
+   width: 300px;
+   background-color: #01f9c6;
+   box-shadow: 5px 10px #888888;
+   padding-top: 10px;
+ }
+ input{
+   font-size: 23px;
+   margin: 10px;
+   border: none;
+   float:none;
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -73,20 +88,18 @@ include 'config1.php';
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="#default" class="logo">CompanyLogo Waiter</a>
    <div class="header-right">
-     <a class="active" href="manager.php">Home</a>
-     <a href="manager_Menu.php">Menu</a>
-     <a href="manager_waiters.php">Waiters</a>
+     <i class="fa fa-home" aria-hidden="true"></i><a class="active" href="manager.php">Home</a>
    </div>
  </div>
 
  <div class="details">
    <form class="" action="" method="post">
-     <h3>Customer Details</h3>
-     <input type="text" name="name" value="Customer Name"> <br>
-     <input type="text" name="tno" value="Table No.">
-     <input type="submit" name="next" value="Next">
+     <center><h3><b>Customer Details</b></h3>
+     <input type="text" name="name" value="" placeholder="Customer Name"> <br>
+     <input type="text" name="tno" value="" placeholder="Table No.">
+     <input type="submit" name="next" value="Next"></center>
    </form>
  </div>
 

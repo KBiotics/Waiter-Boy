@@ -15,6 +15,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -63,6 +64,44 @@ include 'config1.php';
    width: 300px;
    height:500px;
  }
+ .card{
+   box-shadow: 5px 10px #888888;
+ }
+ .order{
+   background: linear-gradient(to right bottom, #deca67, #fbdf32);
+   color: white;
+   font-weight: bolder;
+ }
+ .start{
+   background-color: #00edff;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+   margin-bottom: 10px;
+ }
+ .start:disabled{
+   background-color: #c1c1c1;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+   margin-bottom: 10px;
+ }
+ .complet{
+   background-color: #38ff00;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+ }
+ .complet:disabled{
+   background-color: #c1c1c1;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+ }
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
@@ -81,15 +120,12 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a  href="manager.php">Home</a>
-     <a class="active" href="manager_Menu.php">Menu</a>
-     <a href="manager_waiters.php">Waiters</a>
    </div>
  </div>
 
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -327,11 +363,11 @@ $status=$row['status'];
                            }
 
                            //$total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
-        echo "<td>";
+        echo "<td class=card>";
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
-            echo "<h3><center>Order</center></h3>";
+            echo "<h3 class=order><center>Order</center></h3>";
             echo  "<h4><center>Status : ".$status."</center></h4><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
@@ -349,12 +385,12 @@ $status=$row['status'];
 
             echo "<form action=startcomplete.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
-            echo "<input type=submit name=start value=Start $status_s>";
+            echo "<center><input type=submit name=start value=Start class=start $status_s>";
             echo "</form>";
 
             echo "<form action=startcomplete.php method=post >";
             echo "<input type=hidden name=o_idc value=$o_id>";
-            echo "<input type=submit name=complete value=Complete $status_c>";
+            echo "<input type=submit name=complete value=Complete class=complet $status_c></center>";
             echo "</form>";
 
             echo "</td>";

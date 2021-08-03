@@ -10,6 +10,8 @@ $o_id=$_SESSION["order_id"];
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/c75d7f5569.js"></script>
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -68,12 +70,13 @@ $o_id=$_SESSION["order_id"];
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
    .header-right {
      float: none;
+
    }
  }
  </style>
@@ -83,12 +86,12 @@ $o_id=$_SESSION["order_id"];
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="waiter_order.php">Order</a>
-     <a href="waiter_pan.php">PAN</a>
-     <a href="waiter_n_cstmr.php">New Customer</a>
-     <a href="Menu.php">Histroy</a>
+     <a class="active" href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
+     <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
+     <a href="waiter_n_cstmr.php">New Customer<img src="meta//newc.ico" alt="" height"50" width="50"></a>
+     <a href="waiter_history.php">History<img src="meta//history.png" alt="" height"50" width="50"></a>
    </div>
-   <?php echo "$o_id"; ?>
+   Order ID : <?php echo "$o_id"; ?>
  </div>
 
 <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
@@ -116,7 +119,7 @@ $result = mysqli_query($con,$sql_query1);
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['Dname'] . "</td>";
             echo "<td>" . $row['Dprice'].".00" ."</td>";
-
+            echo "<td>"."<button type=button class=btn btn-info btn-lg data-toggle=modal data-target=#myModal>+</button>"."</td>";
             echo "</tr>";
       }?>
     </table>
@@ -133,17 +136,33 @@ $result = mysqli_query($con,$sql_query1);
                 document.getElementById("id").value = this.cells[0].innerHTML;
                 document.getElementById("name").value = this.cells[1].innerHTML;
                 document.getElementById("price").value = this.cells[2].innerHTML;
-
               };
           }
 
    </script>
+   <!-- Modal -->
+   <div class="modal fade" id="myModal" role="dialog">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Qty.</h4>
+         </div>
+         <div class="modal-body">
+           <center><center>
+             <form method=post action="">
+             <input type="hidden" name="id" id="id"><br>
+             <input type="number" name="qty" value="" placeholder="Qty.">
+             <input type=submit id=atp name=atp value="Add to Pan" class="atp">
+             </form>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
 
-<form method=post action="">
-<input type="hidden" name="id" id="id"><br>
-<input type="number" name="qty" value="" placeholder="Qty.">
-<input type=submit id=atp name=atp value="Add to Pan" class="atp">
-</form>
  </div>
 
  </body>

@@ -9,6 +9,7 @@ include 'config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/c75d7f5569.js"></script>
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
  <style>
  * {box-sizing: border-box;}
@@ -71,16 +72,19 @@ include 'config1.php';
    border: none;
    float:none;
  }
+ .next{
+   width: 120px;
+   height: 50px;
+   font-weight: bolder;
+   
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
-     float: none;
-     display: block;
-     text-align: left;
+
    }
 
    .header-right {
-     float: none;
    }
  }
  </style>
@@ -90,7 +94,7 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Waiter</a>
    <div class="header-right">
-     <i class="fa fa-home" aria-hidden="true"></i><a class="active" href="manager.php">Home</a>
+     <a class="active" href="manager.php"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
    </div>
  </div>
 
@@ -99,7 +103,7 @@ include 'config1.php';
      <center><h3><b>Customer Details</b></h3>
      <input type="text" name="name" value="" placeholder="Customer Name"> <br>
      <input type="text" name="tno" value="" placeholder="Table No.">
-     <input type="submit" name="next" value="Next"></center>
+     <input type="submit" name="next" class="next" value="Next"></center>
    </form>
  </div>
 

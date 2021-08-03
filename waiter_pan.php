@@ -63,12 +63,22 @@ $o_id=$_SESSION["order_id"];
  width: 97%;
  padding: 10px;
  }
+ .confirm{
+   margin: auto;
+   width: 70%;
+   height:50px;
+   color: white;
+   font-weight: bold;
+   font-size: 23px;
+   background-color: #00ffa7;
+   border: none;
+ }
 
 
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
@@ -83,15 +93,15 @@ $o_id=$_SESSION["order_id"];
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a  href="waiter_order.php">Order</a>
-     <a class="active" href="waiter_pan.php">PAN</a>
-     <a href="waiter_n_cstmr.php">New Customer</a>
-     <a href="Menu.php">Histroy</a>
+     <a  href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
+     <a class="active" href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
+     <a href="waiter_n_cstmr.php">New Customer<img src="meta//newc.ico" alt="" height"50" width="50"></a>
+     <a href="waiter_history.php">History<img src="meta//history.png" alt="" height"50" width="50"></a>
    </div>
-   <?php echo "$o_id"; ?>
+   Order ID : <?php echo "$o_id"; ?>
  </div>
 
-<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
+<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Ordered Dishes"/>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE id='".$o_id."'";
@@ -131,9 +141,7 @@ $o_id=$_SESSION["order_id"];
        $D1N=$row['Dname'];
        $D1P=$row['Dprice'];
      }
-     echo "$qty1 $D1N";
      $fprice1=$qty1*$D1P;
-     echo "$fprice1";
      $sql_query2 = "SELECT * FROM `menu` WHERE id='".$D2."'";
      $result2 = mysqli_query($con,$sql_query2);
      while($row = mysqli_fetch_assoc($result2))
@@ -239,9 +247,9 @@ $o_id=$_SESSION["order_id"];
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <div style="overflow-x:auto;">
     <table table id="table" class="table table-bordered table-striped mb-0">
-      <col style="width:15%">
-      <col style="width:60%">
       <col style="width:25%">
+      <col style="width:10%">
+      <col style="width:*">
       <tr>
         <th>Order</th>
         <th> ₹/P</th>
@@ -337,7 +345,7 @@ $o_id=$_SESSION["order_id"];
 
 <form method=post action="">
 <input type="hidden" name="status" value="confirmed"><br>
-<input type=submit name=order value="confirm Order">
+<center><input type=submit name=order class="confirm" value="Confirm Order"></center>
 </form>
  </div>
 

@@ -62,11 +62,17 @@ include 'config1.php';
  width: 97%;
  padding: 10px;
  }
+ .modify{
+   border: none;
+   background-color: #00ff1a;
+   color: white;
+   padding: 2px 7px;
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
@@ -81,13 +87,14 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="#home">Home</a>
-     <a href="waiter_n_cstmr.php">New Customer</a>
-     <a href="Menu.php">Histroy</a>
+     <a  href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
+     <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
+     <a href="waiter_n_cstmr.php">New Customer<img src="meta//newc.ico" alt="" height"50" width="50"></a>
+     <a class="active" href="waiter_history.php">History<img src="meta//history.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
-<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
+<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Customer Name or ID"/>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` ORDER BY(id) DESC ";
@@ -116,7 +123,7 @@ $result = mysqli_query($con,$sql_query1);
             echo "<td>";
             echo "<br><form action=waiter_order2.php method=post >";
             echo "<input type=hidden name=o_id value=$id>";
-            echo "<input type=submit name=submit value=Modify>";
+            echo "<input type=submit name=submit class=modify value=Modify>";
             echo "</form>";
              echo"</td>";
       }?>
@@ -137,15 +144,6 @@ $result = mysqli_query($con,$sql_query1);
           }
 
    </script>
-
-<form method=post action="">
-  <!-- First Name:<input type="text" name="fname" id="fname"><br><br> -->
-  <!-- Middle Name:<input type="text" name="lname" id="mname"><br><br> -->
-  <!-- Last Name:<input type="text" name="age" id="lname"><br><br> -->
-<input type="hidden" name="id" id="id"><br>
-<input type=submit id=submit name=submit value="view more" class="viewmore">
-
-</form>
  </div>
 
  </body>

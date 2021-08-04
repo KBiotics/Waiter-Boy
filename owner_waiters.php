@@ -71,7 +71,6 @@ include 'config1.php';
  * {
    word-wrap:break-word;
  }
-
  .search{
  margin-left: 5px;
  margin-top: 10px;
@@ -118,18 +117,18 @@ include 'config1.php';
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="#default" class="logo">CompanyLogo</a>
    <div class="header-right">
-     <a href="owner.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
-     <a class="active" href="#Manager">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
+     <a href="owner.php">Home <img src="meta//home.png" alt="" height"50" width="50"></a>
+     <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
      <a href="owner_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
-     <a href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
+     <a class="active" href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
  <div class="container">
    <!-- Trigger the modal with a button -->
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Manager</button>
+   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Waiters</button>
 
    <!-- Modal -->
    <div class="modal fade" id="myModal" role="dialog">
@@ -137,15 +136,15 @@ include 'config1.php';
        <div class="modal-content">
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">Add Manager</h4>
+           <h4 class="modal-title">Add New Waiter</h4>
          </div>
          <div class="modal-body">
-           <center>New Manager<center>
+           <center>New Waiter<center>
              <form class="" action="" method="post">
                <input type="text" class="name" name="name" value="" placeholder="Name" required>
                <input type="text" class="uname" name="username" value="" placeholder="Username" required>
-               <input type="text" class="passw" name="password" value="" placeholder="Password" required>
-               <input type="submit" class="submit" name="submit" value="submit">
+               <input type="text"  class="passw"name="password" value="" placeholder="Password" required>
+               <input type="submit"  class="submit" name="submit" value="Submit">
              </form>
          </div>
          <div class="modal-footer">
@@ -155,10 +154,11 @@ include 'config1.php';
      </div>
    </div>
  </div>
+
  <div class="Dlist">
-   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search Aviable Managers"/>
+   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search Aviable Waiters"/>
    <?php
-   $sql_query1 = "SELECT * FROM `managers` ";
+   $sql_query1 = "SELECT * FROM `waiters` ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -195,12 +195,23 @@ $result = mysqli_query($con,$sql_query1);
  </body>
  </html>
 
+ <script>
+ $(document).ready(function(){
+   $("#myInput").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $("#myTable tr").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+   });
+ });
+ </script>
+
  <?php
  if(isset($_POST['submit'])){
  $name = mysqli_real_escape_string($con,$_POST['name']);
  $username = mysqli_real_escape_string($con,$_POST['username']);
  $password = mysqli_real_escape_string($con,$_POST['password']);
- $sql_query_insert = "INSERT INTO managers(name, username, password) values ('$name','$username','$password')";
+ $sql_query_insert = "INSERT INTO waiters(name, username, password) values ('$name','$username','$password')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {

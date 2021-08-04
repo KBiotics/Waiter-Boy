@@ -65,6 +65,13 @@ $o_id=$_SESSION["order_id"];
  width: 97%;
  padding: 10px;
  }
+ table{
+   table-layout:fixed;
+   width:100%;
+ }
+ * {
+   word-wrap:break-word;
+ }
 
 
  @media screen and (max-width: 500px) {
@@ -94,7 +101,7 @@ $o_id=$_SESSION["order_id"];
    Order ID : <?php echo "$o_id"; ?>
  </div>
 
-<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Searching for Verity of Aviable Dishes"/>
+<input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Verity of Aviable Dishes"/>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `menu` ";
@@ -103,9 +110,10 @@ $result = mysqli_query($con,$sql_query1);
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <div style="overflow-x:auto;">
     <table table id="table" class="table table-bordered table-striped mb-0">
+      <col style="width:10%">
+      <col style="width:40%">
       <col style="width:15%">
-      <col style="width:60%">
-      <col style="width:25%">
+      <col style="width:10%">
       <tr>
         <th>ID</th>
         <th>Name</th>

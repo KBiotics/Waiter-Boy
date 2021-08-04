@@ -15,6 +15,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -60,17 +61,52 @@ include 'config1.php';
     table-layout:fixed;
  }
  td{
-
- }
- .card{
    width: 310px;
    height:500px;
+ }
+ .card{
+   box-shadow: 5px 10px #888888;
+ }
+ .order{
+   background: linear-gradient(to right bottom, #deca67, #fbdf32);
+   color: white;
+   font-weight: bolder;
+ }
+ .start{
+   background-color: #00edff;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+   margin-bottom: 10px;
+ }
+ .start:disabled{
+   background-color: #c1c1c1;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+   margin-bottom: 10px;
+ }
+ .complet{
+   background-color: #38ff00;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+ }
+ .complet:disabled{
+   background-color: #c1c1c1;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
  }
 
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
@@ -85,9 +121,9 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="manager.php">Home</a>
-     <a href="manager_Menu.php">Menu</a>
-     <a href="manager_waiters.php">Waiters</a>
+     <a class="active" href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
+     <a href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="manager_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
@@ -327,7 +363,7 @@ $status_l=$row['status'];
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
-            echo "<h3><center>Order</center></h3>";
+            echo "<h3 class=order><center>Order</center></h3>";
             echo  "<h4><center>Status : ".$status_l."</center></h4><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
@@ -343,7 +379,7 @@ $status_l=$row['status'];
             echo  "$fD_name12"."<br>" ;
             echo  "Total : ₹$total"."<br>" ;
 
-            echo "<form action=pay_m.php method=post >";
+            echo "<center><form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=total value=$total>";
             echo "Payment Method : <br><input type=radio name=paym value=Cash required> Cash ";
@@ -351,15 +387,15 @@ $status_l=$row['status'];
             echo "<input type=radio name=paym value=UPI required> UPI ";
             echo "<input type=radio name=paym value=Cash+UPI required> Cash + UPI ";
             echo "<input type=radio name=paym value=Other required> Other<br>";
-            echo "<input type=submit name=payment value=Submit $status_s>";
+            echo "<input type=submit name=payment class=start value=Submit $status_s>";
             echo "</form>";
 
-            echo "OR<br><form action=payment\pay.php method=post >";
+            echo "<b>OR</b><br><form action=payment\pay.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=cname value=$cname>";
             echo "<input type=hidden name=money value=$total>";
-            echo "<input type=submit name=submit value=Pay_Now_with_Razorpay $status_s>";
-            echo "</form>";
+            echo "<input type=submit name=submit class=complet value=Pay_Now_with_Razorpay $status_s>";
+            echo "</form></center>";
             echo "</td>";
       }?>
     </table>

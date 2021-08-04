@@ -15,6 +15,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -56,11 +57,49 @@ include 'config1.php';
    padding: 0px 0px;
    margin-left: 0px;
  }
+ .Dlist{
+   background-color: white;
+   padding: 10px 10px;
+   margin-top: 10px;
+   margin: 10px;
+ }
+ table{
+   background-color: rgb(178, 200, 171);
+   table-layout:fixed;
+   width:100%;
+ }
+ * {
+   word-wrap:break-word;
+ }
+ .search{
+ margin-left: 5px;
+ margin-top: 10px;
+ width: 97%;
+ padding: 10px;
+ }
+ .Dname{
+   font-size: 23px;
+   margin: 5px;
+ }
+ .Dprice{
+   font-size: 23px;
+ }
+ .submit{
+   font-size: 23px;
+   margin: 5px;
+   color: white;
+   background-color: rgb(125, 230, 90);
+   border: none;
+   padding: 5px 5px;
+ }
+ .submit:hover{
+   background-color: rgb(62, 247, 0);
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
@@ -75,15 +114,15 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a  href="manager.php">Home</a>
-     <a class="active" href="manager_Menu.php">Menu</a>
-     <a href="manager_waiters.php">Waiters</a>
+     <a  href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
+     <a class="active" href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="manager_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
  <div class="container">
    <!-- Trigger the modal with a button -->
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Manu</button>
+   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Menu</button>
 
    <!-- Modal -->
    <div class="modal fade" id="myModal" role="dialog">
@@ -91,14 +130,14 @@ include 'config1.php';
        <div class="modal-content">
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">Modal Header</h4>
+           <h4 class="modal-title">Add New Dish to Menu</h4>
          </div>
          <div class="modal-body">
            <center>New Dish<center>
              <form class="" action="" method="post">
-               <input type="text" name="Dname" value="" placeholder="Dish Name">
-               <input type="text" name="Dprice" value="" placeholder="Price">
-               <input type="submit" name="submit" value="submit">
+               <input type="text" class="Dname" name="Dname" value="" placeholder="Dish Name" required>
+               <input type="text" class="Dprice" name="Dprice" value="" placeholder="Price" required>
+               <input type="submit" class="submit" name="submit" value="Submit">
              </form>
          </div>
          <div class="modal-footer">
@@ -110,6 +149,7 @@ include 'config1.php';
  </div>
 
  <div class="Dlist">
+   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Verity of Aviable Dishes"/>
    <?php
    $sql_query1 = "SELECT * FROM `menu` ";
 $result = mysqli_query($con,$sql_query1);
@@ -145,6 +185,17 @@ $result = mysqli_query($con,$sql_query1);
 
  </body>
  </html>
+
+ <script>
+ $(document).ready(function(){
+   $("#myInput").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $("#myTable tr").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+   });
+ });
+ </script>
 
  <?php
  if(isset($_POST['submit'])){

@@ -15,6 +15,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -59,26 +60,94 @@ include 'config1.php';
  table{
     table-layout:fixed;
  }
- td{
-
- }
  .card{
    width: 310px;
    height:500px;
  }
+ .card{
+   box-shadow: 5px 10px #888888;
+ }
+ .order{
+   background: linear-gradient(to right bottom, #deca67, #fbdf32);
+   color: white;
+   font-weight: bolder;
+ }
  .table_summary{
    font-size: 50px;
+   margin: auto;
+ }
+ .upper_box{
+   background-color: white;
+   margin: auto;
+   margin-top: 10px;
+   padding: 50px 50px;
+   width: 600px;
+   height: auto;
+   box-shadow: 5px 10px #18171778;
+ }
+ .td1{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #00ff7e, yellow);
+   font-weight: bold;
+ }
+ .td2{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #04088d, #3dc968);
+   font-weight: bold;
+ }
+ .td3{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #faf6ef, #1b56db);
+   font-weight: bold;
+ }
+ .td4{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #00ff7e, #00adff);
+   font-weight: bold;
+ }
+ .td5{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #ff0000, #9d00ff);
+   font-weight: bold;
+ }
+ .td6{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #ffffff, #00b8ff);
+   font-weight: bold;
+ }
+ .td7{
+   background-color: rgb(35, 150, 97);
+   color: white;
+   background-image: linear-gradient(to bottom right, #00ff7e, #00ffdc);
+   font-weight: bold;
  }
 
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
-     display: block;
+     display: table-cell;
      text-align: left;
    }
 
    .header-right {
      float: none;
+   }
+   .table_summary{
+     font-size: 34px;
+     margin: auto;
+   }
+   .upper_box{
+     background-color: white;
+     margin: 10px 10px;
+     padding: 10px 10px;
+     width: auto;
+     height: auto;
    }
  }
  </style>
@@ -88,16 +157,17 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a class="active" href="#home">Home</a>
-     <a href="owner_manager.php">Managers</a>
-     <a href="Menu.php">Menu</a>
+     <a class="active" href="#home">Home <img src="meta//home.png" alt="" height"50" width="50"></a>
+     <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
+     <a href="owner_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
  <div class="upper_box">
-   <table border="2" class="table_summary">
+   <table class="table_summary">
      <tr>
-       <td><center>Cash<br>
+       <td class="td1"><center>Cash<br>
          <?php
          $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Cash' ";
          $result_all = mysqli_query($con,$sql_query_sum_all);
@@ -110,7 +180,7 @@ include 'config1.php';
            echo "$sum_all";
           ?></center>
        </td>
-       <td> <center>Card<br><?php
+       <td class="td2"><center>Card<br><?php
         $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Card' ";
         $result_all = mysqli_query($con,$sql_query_sum_all);
         $sum_all=0;
@@ -124,7 +194,7 @@ include 'config1.php';
        </td>
      </tr>
      <tr>
-       <td><center>UPI<br> <?php
+       <td class="td3"><center>UPI<br> <?php
         $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='UPI' ";
         $result_all = mysqli_query($con,$sql_query_sum_all);
         $sum_all=0;
@@ -136,7 +206,7 @@ include 'config1.php';
           echo "$sum_all";
          ?></center>
        </td>
-       <td><center>Cash+UPI<br>
+       <td class="td4"><center>Cash+UPI<br>
          <?php
          $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Cash+UPI'";
          $result_all = mysqli_query($con,$sql_query_sum_all);
@@ -151,7 +221,7 @@ include 'config1.php';
         </td>
      </tr>
      <tr>
-       <td><center>Razorpay<br>
+       <td class="td5"><center>Razorpay<br>
          <?php
 $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Razorpay'";
 $result_all = mysqli_query($con,$sql_query_sum_all);
@@ -164,7 +234,7 @@ while($row = mysqli_fetch_assoc($result_all))
   echo "$sum_all";
  ?></center>
        </td>
-       <td><center>Other<br> <?php
+       <td class="td6"><center>Other<br> <?php
  $sql_query_sum_all = "SELECT * FROM `cstmr` WHERE pay_m='Other'";
  $result_all = mysqli_query($con,$sql_query_sum_all);
  $sum_all=0;
@@ -178,7 +248,7 @@ while($row = mysqli_fetch_assoc($result_all))
 </td></center>
      </tr>
      <tr>
-       <td colspan="2"><center>Total<br>
+       <td colspan="2" class="td7"><center>Total<br>
          <?php
          $sql_query_sum_all = "SELECT * FROM `cstmr` ";
          $result_all = mysqli_query($con,$sql_query_sum_all);
@@ -435,7 +505,7 @@ $pay_ref=$row['pay_l'];
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
-            echo "<h3><center>Order</center></h3>";
+            echo "<h3 class=order><center>Order</center></h3>";
             echo  "<h4><center>Status : ".$status_l."</center></h4><br>" ;
             echo  "<center>Confirmed : ".$dateI."</center><br>" ;
             echo  "<center>Cooked : ".$dateII."</center><br>" ;

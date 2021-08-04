@@ -107,7 +107,7 @@ background-color: white;
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo WaiterBoy</a>
+   <a href="waiter.php" class="logo">CompanyLogo WaiterBoy</a>
    <div class="header-right">
    </div>
  </div>

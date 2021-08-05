@@ -1,6 +1,16 @@
 <?php
 include 'config1.php';
-$o_id=$_SESSION["order_id"];
+$o_id="";
+$o_id1=$Dname = mysqli_real_escape_string($con,$_POST['o_id']);
+$o_id2=$_SESSION["order_id"];
+if ($o_id1=="") {
+  $o_id=$o_id2;
+}
+else {
+  $o_id=$o_id1;
+}
+
+$_SESSION["order_id"]=$o_id;
  ?>
 
  <!DOCTYPE html>
@@ -73,12 +83,12 @@ $o_id=$_SESSION["order_id"];
  * {
    word-wrap:break-word;
  }
-.Dlist{
-  background-color: white;
-  border-radius: 10px;
-  margin-top: 5px;
-  padding-top: 10px;
-}
+ .Dlist{
+   background-color: white;
+   border-radius: 10px;
+   margin-top: 5px;
+   padding-top: 10px;
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -164,7 +174,7 @@ $result = mysqli_query($con,$sql_query1);
          </div>
          <div class="modal-body">
            <center><center>
-             <form method=post action="">
+             <form method=post action="waiter_order_q2.php">
              <input type="hidden" name="id" id="id"><br>
              <input type="number" name="qty" value="" placeholder="Qty.">
              <input type=submit id=atp name=atp value="Add to Pan" class="atp">

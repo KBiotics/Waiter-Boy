@@ -17,6 +17,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -65,6 +66,7 @@ include 'config1.php';
    background-color: #01f9c6;
    box-shadow: 5px 10px #888888;
    padding-top: 10px;
+   margin-top: 50px;;
  }
  input{
    font-size: 23px;
@@ -76,7 +78,7 @@ include 'config1.php';
    width: 120px;
    height: 50px;
    font-weight: bolder;
-   
+
  }
 
  @media screen and (max-width: 500px) {
@@ -94,7 +96,7 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Waiter</a>
    <div class="header-right">
-     <a class="active" href="manager.php"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+     <a class="active" href="waiter_index.php"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
    </div>
  </div>
 

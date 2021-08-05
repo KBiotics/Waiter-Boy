@@ -1,5 +1,6 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
  ?>
 
  <!DOCTYPE html>
@@ -15,6 +16,7 @@ include 'config1.php';
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -67,7 +69,7 @@ include 'config1.php';
    width: 600px;
    background-color: #ddf2ec;
    margin: auto;
-   margin-top: 50px;
+   margin-top: 5px;
    padding: 10px;
    border-radius: 30px;
  }
@@ -83,6 +85,19 @@ background-color: white;
 .g_table td{
   height: 140px;
   width: 280px;
+}
+.box1{
+  height: auto;
+  width: 600px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: 50px;
+  padding: 30px 10px;
+  border-radius: 10px;
+  color: rgb(105, 30, 247);
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 22px;
 }
 
  @media screen and (max-width: 500px) {
@@ -101,6 +116,10 @@ background-color: white;
      background-color: #ddf2ec;
      margin: auto;
    }
+   .box1{
+     width: auto;
+     margin-bottom: 5px;
+   }
  }
  </style>
  </head>
@@ -111,16 +130,19 @@ background-color: white;
    <div class="header-right">
    </div>
  </div>
+ <div class="box1">
+   Hi, <?php echo "$Attname"; ?>
+ </div>
 <div class="home">
   <table class="g_table">
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter.php';">
-        <img src="https://www.pngall.com/wp-content/uploads/2016/04/Home-Download-PNG.png" style="height: 100px; width:100px;  "><br>Home</button></td>
-      <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="https://iconarchive.com/download/i6083/custom-icon-design/pretty-office-3/Add-Male-User.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_index.php';">
+        <img src="meta//home.png" style="height: 100px; width:100px;  "><br>Home</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="meta//newc.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
     </tr>
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_history.php';"><img src="https://icons.veryicon.com/png/o/miscellaneous/small-green-icon/history-36.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
-      <td><button  class="g_button" onclick="window.location.href='waiter.php';">X</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_history_home.php';"><img src="meta//history.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
+      <td><button  class="g_button" onclick="window.location.href='waiter.php';"><img src="meta//logout.ico" style="height: 100px; width:100px;  "><br>Logout</button></td>
     </tr>
   </table>
 </div>

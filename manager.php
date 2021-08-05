@@ -1,5 +1,6 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
  ?>
 
  <!DOCTYPE html>

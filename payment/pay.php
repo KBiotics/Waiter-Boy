@@ -7,6 +7,7 @@ $o_ref = mysqli_real_escape_string($con,$_POST['o_id']);
 $cname = mysqli_real_escape_string($con,$_POST['cname']);
 $_SESSION["order_id"]=$o_ref;
 $_SESSION["money"]=$money;
+$Attname=$_SESSION["attname"];
 // Create the Razorpay Order
 
 use Razorpay\Api\Api;

@@ -94,8 +94,6 @@ include 'config1.php';
  <div class="header">
    <a href="#default" class="logo">CompanyLogo Owner</a>
    <div class="header-right">
-     <a  href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
-     <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
      <a href="waiter_n_cstmr.php">New Customer<img src="meta//newc.ico" alt="" height"50" width="50"></a>
      <a class="active" href="waiter_history.php">History<img src="meta//history.png" alt="" height"50" width="50"></a>
    </div>

@@ -1,6 +1,7 @@
 <?php
 include 'config1.php';
 $o_id=$_SESSION["order_id"];
+$Attname=$_SESSION["attname"];
  ?>
 
  <!DOCTYPE html>
@@ -16,6 +17,7 @@ $o_id=$_SESSION["order_id"];
  body {
    margin: 0;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: #4b4b4c;
  }
 
  .header {
@@ -72,6 +74,19 @@ $o_id=$_SESSION["order_id"];
    font-size: 23px;
    background-color: #00ffa7;
    border: none;
+ }
+ .tr_head{
+   color: white;
+ }
+ .tr_total{
+   color: white;
+   font-weight: bold;
+ }
+ .Dlist{
+   background-color: white;
+   border-radius: 10px;
+   margin-top: 5px;
+   padding-top: 10px;
  }
 
 
@@ -250,7 +265,7 @@ $o_id=$_SESSION["order_id"];
       <col style="width:25%">
       <col style="width:10%">
       <col style="width:*">
-      <tr>
+      <tr class="tr_head" style="background-color:#FF0000">
         <th>Order</th>
         <th> ₹/P</th>
         <th> ₹ Price</th>
@@ -317,7 +332,7 @@ $o_id=$_SESSION["order_id"];
           <td><?php echo "$D12P"; ?></td>
           <td><?php echo "$fprice12"; ?></td>
         </tr>
-        <tr>
+        <tr class="tr_total" style="background-color:#3fff00">
           <td>Total</td>
           <td></td>
           <td><?php echo "$total"; ?></td>
@@ -381,7 +396,7 @@ $o_id=$_SESSION["order_id"];
 if(isset($_POST['order'])){
  $status = mysqli_real_escape_string($con,$_POST['status']);
  $dateI = date("Y-m-d h:i:sa");
- $sql_query_update = "UPDATE cstmr SET status='".$status."' ,dateI='".$dateI."' WHERE id='".$o_id."'";
+ $sql_query_update = "UPDATE cstmr SET status='".$status."' ,waiter='".$Attname."' ,dateI='".$dateI."' WHERE id='".$o_id."'";
  $result_update = mysqli_query($con,$sql_query_update);
    if($result_update==0)
    {

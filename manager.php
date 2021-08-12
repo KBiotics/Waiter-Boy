@@ -10,6 +10,7 @@ $Attname=$_SESSION["attname"];
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -28,7 +29,7 @@ $Attname=$_SESSION["attname"];
  .header a {
    float: left;
    color: black;
-   text-align: center;
+
    padding: 12px;
    text-decoration: none;
    font-size: 18px;
@@ -103,6 +104,10 @@ $Attname=$_SESSION["attname"];
    font-size: 23px;
    font-weight: bold;
  }
+ .status_paid{
+  height: 50%;
+  width: 50%;
+}
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -120,7 +125,7 @@ $Attname=$_SESSION["attname"];
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="manager.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a class="active" href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
      <a href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
@@ -130,7 +135,7 @@ $Attname=$_SESSION["attname"];
 
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -177,6 +182,16 @@ $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status_l=$row['status'];
+$pay_method=$row['pay_m'];
+$pay_ref="";
+$pay_ref1=$row['pay_l'];
+$pay_ref2=$row['manager'];
+if ($pay_ref1=='') {
+  $pay_ref="$pay_ref2";
+}
+else {
+  $pay_ref="$pay_ref1";
+}
 }
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
@@ -380,6 +395,16 @@ $status_l=$row['status'];
             echo  "$fD_name12"."<br>" ;
             echo  "Total : ₹$total"."<br>" ;
 
+            if ($status_s=='Disabled') {
+              echo "<center><img src=meta/paid2.png alt=Paid class=status_paid>";
+              echo "<form action=pay_m.php method=post >";
+              echo "<input type=hidden name=o_id value=$o_id>";
+              echo "Payment Method : $pay_method<br>";
+              echo "Payment Ref. : $pay_ref<br>";
+              echo "</form></center>";
+            }
+            else {
+              echo "<center><img src=meta/unpaid.png alt=UnPaid class=status_paid></center>";
             echo "<center><form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=total value=$total>";
@@ -398,6 +423,7 @@ $status_l=$row['status'];
             echo "<input type=submit name=submit class=complet value=Pay_Now_with_Razorpay $status_s>";
             echo "</form></center>";
             echo "</td>";
+          }
       }?>
     </table>
     </div>

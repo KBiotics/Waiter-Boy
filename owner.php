@@ -9,6 +9,7 @@ include 'config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -27,7 +28,6 @@ include 'config1.php';
  .header a {
    float: left;
    color: black;
-   text-align: center;
    padding: 12px;
    text-decoration: none;
    font-size: 18px;
@@ -127,6 +127,10 @@ include 'config1.php';
    background-image: linear-gradient(to bottom right, #00ff7e, #00ffdc);
    font-weight: bold;
  }
+ .status_paid{
+  height: 50%;
+  width: 50%;
+}
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -155,7 +159,7 @@ include 'config1.php';
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="owner.php" class="logo"> <img src="meta/logo.png" alt="logo" class="logo"> </a>
    <div class="header-right">
      <a class="active" href="#home">Home <img src="meta//home.png" alt="" height"50" width="50"></a>
      <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
@@ -317,7 +321,15 @@ $dateI=$row['dateI'];
 $dateII=$row['dateII'];
 $dateIII=$row['dateII'];
 $pay_method=$row['pay_m'];
-$pay_ref=$row['pay_l'];
+$pay_ref="";
+$pay_ref1=$row['pay_l'];
+$pay_ref2=$row['manager'];
+if ($pay_ref1=='') {
+  $pay_ref="$pay_ref2";
+}
+else {
+  $pay_ref="$pay_ref1";
+}
 }
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
@@ -524,12 +536,18 @@ $pay_ref=$row['pay_l'];
             echo  "$fD_name12"."<br>" ;
             echo  "Total : ₹$total"."<br>" ;
 
+            if ($status_s=='Disabled') {
+              echo "<center><img src=meta/paid2.png alt=Paid class=status_paid>";
             echo "<form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "Payment Method : $pay_method<br>";
             echo "Payment Ref. : $pay_ref<br>";
             echo "</form>";
-            echo "</td>";
+            echo "</td></center>";
+            }
+            else {
+              echo "<center><img src=meta/unpaid.png alt=UnPaid class=status_paid></center>";
+          }
       }?>
     </table>
     </div>

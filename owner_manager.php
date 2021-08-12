@@ -9,6 +9,7 @@ include 'config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -27,7 +28,7 @@ include 'config1.php';
  .header a {
    float: left;
    color: black;
-   text-align: center;
+
    padding: 12px;
    text-decoration: none;
    font-size: 18px;
@@ -101,6 +102,13 @@ include 'config1.php';
  .submit:hover{
    background-color: rgb(62, 247, 0);
  }
+ .remove_w{
+  background:url(meta/remove.png);
+  background-repeat: round;
+  border: none;
+  width: 30px;
+  padding: 5px;
+}
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -112,13 +120,16 @@ include 'config1.php';
    .header-right {
      float: none;
    }
+   .remove_w{
+  width: 5px;
+}
  }
  </style>
  </head>
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="owner.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a href="owner.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
      <a class="active" href="#Manager">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
@@ -182,7 +193,10 @@ $result = mysqli_query($con,$sql_query1);
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['username'] ."</td>";
             echo "<td>" . $row['password'] ."</td>";
-        //echo "<td>" . $row['lname'] . "</td>";
+            echo "<td><center><form action=manager_rem_m.php method=post>";
+            echo"<input type=hidden name=rem_w value=$row[id]>
+            <input type=submit class=remove_w value=>";
+            echo "</form></center></td>";
 
             echo "</tr>";
       }?>

@@ -169,8 +169,8 @@ cursor: pointer;
 :-ms-input-placeholder      {color: #DDD;}
 
 .logo{
-  height: 50px;
-  width: 300px;
+  height: 100px;
+  width: 100px;
 }
 
 @media screen and (max-width: 500px) {
@@ -190,13 +190,10 @@ cursor: pointer;
   </head>
   <body>
     <section class="loginWrapper">
-<img src="meta/logo.png" alt="logo" class="logo"><br>
+<img src="logo.ico" alt="logo" class="logo"><br>
 <h2>Login</h2>
 	<ul class="tabs">
-		<li class="active">Waiters</li>
-		<li>Managers</li>
-    <li>Cook</li>
-    <li>Owner</li>
+		<li class="active">Admin</li>
 	</ul>
 
 	<ul class="tab__content">
@@ -206,38 +203,10 @@ cursor: pointer;
 				<form method="POST" action="">
 					<input type="name" name="name" placeholder="Username" required>
 					<input type="password" name="password" placeholder="Password" required>
-					<input type="submit" value="Login" name="wlogin">
+					<input type="submit" value="Login" name="alogin">
 				</form>
 			</div>
 		</li>
-
-		<li>
-			<div class="content__wrapper">
-				<form method="POST" action="">
-					<input type="name" name="name" placeholder="Username" required>
-					<input type="password" name="password" placeholder="Password" required>
-					<input type="submit" value="Login" name="mlogin">
-				</form>
-			</div>
-		</li>
-    		<li>
-			<div class="content__wrapper">
-				<form method="POST" action="">
-          <input type="name" name="name" placeholder="Username" required>
-					<input type="password" name="password" placeholder="Password" required>
-					<input type="submit" value="Login" name="clogin">
-				</form>
-			</div>
-		</li>
-    <li>
-  <div class="content__wrapper">
-    <form method="POST" action="">
-      <input type="name" name="name" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <input type="submit" value="Login" name="ologin">
-    </form>
-  </div>
-</li>
 
 	</ul>
 
@@ -308,23 +277,21 @@ $(document).ready(function(){
 
 <?php
 
-if(isset($_POST['wlogin'])){
+if(isset($_POST['alogin'])){
 
     $email = mysqli_real_escape_string($con,$_POST['name']);
     $password = mysqli_real_escape_string($con,$_POST['password']);
    if ($email != "" && $password != ""){
 
-        $sql_query = "SELECT * FROM `waiters` WHERE username='".$email."' and password='".$password."'";
+        $sql_query = "SELECT * FROM `admin` WHERE username='".$email."' and password='".$password."'";
         $result = mysqli_query($con,$sql_query);
         $row = mysqli_fetch_assoc($result);
 		if($row!=0){
 			do
 			{
-				$Attname=$row['name'];
-					$_SESSION["attname"]=$Attname;
 						    ?>  <script>
 
-              window.location.href = "waiter_index.php";
+              window.location.href = "new_owner.php";
                </script>
 			<?php
 
@@ -349,123 +316,3 @@ if(isset($_POST['wlogin'])){
  ?>
 
  <?php
-
- if(isset($_POST['mlogin'])){
-
-     $email = mysqli_real_escape_string($con,$_POST['name']);
-     $password = mysqli_real_escape_string($con,$_POST['password']);
-    if ($email != "" && $password != ""){
-
-         $sql_query = "SELECT * FROM `managers` WHERE username='".$email."' and password='".$password."'";
-         $result = mysqli_query($con,$sql_query);
-         $row = mysqli_fetch_assoc($result);
- 		if($row!=0){
- 			do
- 			{
- 				$Attname=$row['name'];
- 					$_SESSION["attname"]=$Attname;
- 						    ?>  <script>
-
-               window.location.href = "manager.php";
-                </script>
- 			<?php
-
- 			}while($row = mysqli_fetch_assoc($result));
- 			}
-
- 		else{
-             ?>  <script>
-
-                alert("Invalid ID or Password");
-                </script>
- 			<?php
-
- 		}
-
-     }
-       else{
- 		       echo "Username or Password missing !";
-
- 	  }
- }
-  ?>
-
-  <?php
-
-  if(isset($_POST['clogin'])){
-
-      $email = mysqli_real_escape_string($con,$_POST['name']);
-      $password = mysqli_real_escape_string($con,$_POST['password']);
-     if ($email != "" && $password != ""){
-  		if($email == "cooka"){
-  			do
-  			{
-  				$Attname=$row['name'];
-  					$_SESSION["attname"]=$Attname;
-  						    ?>  <script>
-
-                window.location.href = "cook_index.php";
-                 </script>
-  			<?php
-
-  			}while($row = mysqli_fetch_assoc($result));
-  			}
-
-  		else{
-              ?>  <script>
-
-                 alert("Invalid ID or Password");
-                 </script>
-  			<?php
-
-  		}
-
-      }
-        else{
-  		       echo "Username or Password missing !";
-
-  	  }
-  }
-   ?>
-
-   <?php
-
-   if(isset($_POST['ologin'])){
-
-       $email = mysqli_real_escape_string($con,$_POST['name']);
-       $password = mysqli_real_escape_string($con,$_POST['password']);
-      if ($email != "" && $password != ""){
-
-           $sql_query = "SELECT * FROM `owner` WHERE username='".$email."' and password='".$password."'";
-           $result = mysqli_query($con,$sql_query);
-           $row = mysqli_fetch_assoc($result);
-   		if($row!=0){
-   			do
-   			{
-   				$Attname=$row['name'];
-   					$_SESSION["attname"]=$Attname;
-   						    ?>  <script>
-
-                 window.location.href = "owner.php";
-                  </script>
-   			<?php
-
-   			}while($row = mysqli_fetch_assoc($result));
-   			}
-
-   		else{
-               ?>  <script>
-
-                  alert("Invalid ID or Password");
-                  </script>
-   			<?php
-
-   		}
-
-       }
-         else{
-   		       echo "Username or Password missing !";
-
-   	  }
-   }
-    ?>

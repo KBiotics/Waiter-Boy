@@ -22,6 +22,7 @@ $_SESSION["order_id"]=$o_id;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/c75d7f5569.js"></script>
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -40,7 +41,7 @@ $_SESSION["order_id"]=$o_id;
  .header a {
    float: left;
    color: black;
-   text-align: center;
+
    padding: 12px;
    text-decoration: none;
    font-size: 18px;
@@ -107,7 +108,7 @@ $_SESSION["order_id"]=$o_id;
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a class="active" href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
      <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
@@ -142,7 +143,7 @@ $result = mysqli_query($con,$sql_query1);
         echo "<tr>";
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['Dname'] . "</td>";
-            echo "<td>" . $row['Dprice'].".00" ."</td>";
+            echo "<td>" . $row['Dprice'] ."</td>";
             echo "<td>"."<button type=button class=btn btn-info btn-lg data-toggle=modal data-target=#myModal>+</button>"."</td>";
             echo "</tr>";
       }?>

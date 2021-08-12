@@ -1,6 +1,5 @@
 <?php
 include 'config1.php';
-$Attname=$_SESSION["attname"];
  ?>
 
  <!DOCTYPE html>
@@ -144,6 +143,14 @@ $Attname=$_SESSION["attname"];
    font-size: 23px;
    padding: 10px 10px;
  }
+ .status_pic{
+   height: 15%;
+   width: 70%;
+ }
+ .status_paid{
+   height: 50%;
+   width: 50%;
+ }
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -227,16 +234,28 @@ $result = mysqli_query($con,$sql_query1);
       $cname=$row['name'];
       $ctno=$row['tno'];
       $status_s=$row['pay_m'];
+      $status=$row['status'];
       if ($status_s!="") {
         $status_s="Disabled";
       }
       else {
         $status_s="";
       }
+      $statusimg='blank';
+      if ($status=='confirmed') {
+        $statusimg='../meta/Status1.png';
+      }
+      if ($status=='Cooking') {
+        $statusimg='../meta/Status2.png';
+      }
+      if ($status=='Served') {
+        $statusimg='../meta/Status3.png';
+      }
+      if ($status=='') {
+        $statusimg='../meta/Status0.png';
+      }
    ?>
-  <img src="../meta/home.png" alt="" width="100" height="100">
-  <img src="../meta/home.png" alt="" width="100" height="100">
-  <img src="../meta/home.png" alt="" width="100" height="100">
+  <center><img src="<?php echo "$statusimg"; ?>" alt="" class="status_pic"></center>
 </div>
  <div class="Dlist">
 
@@ -476,24 +495,19 @@ $status_l=$row['status'];
             echo  "$fD_name12"."<br>" ;
             echo  "Total : ₹$total"."<br>" ;
 
-            echo "<center><form action=pay_m.php method=post >";
-            echo "<input type=hidden name=o_id value=$o_id>";
-            echo "<input type=hidden name=total value=$total>";
-            echo "Payment Method : <br><input type=radio name=paym value=Cash required> Cash ";
-            echo "<input type=radio name=paym value=Card required> Card ";
-            echo "<input type=radio name=paym value=UPI required> UPI ";
-            echo "<input type=radio name=paym value=Cash+UPI required> Cash + UPI ";
-            echo "<input type=radio name=paym value=Other required> Other<br>";
-            echo "<input type=submit name=payment class=start value=Submit $status_s>";
-            echo "</form>";
-
-            echo "<b>OR</b><br><form action=payment\pay.php method=post >";
+            echo "<center><form action=payment\pay.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=cname value=$cname>";
             echo "<input type=hidden name=money value=$total>";
+            if ($status_s=='Disabled') {
+              echo "<img src=../meta/paid.png alt=Paid class=status_paid>";
+            }
+            else {
             echo "<input type=submit name=submit class=complet value=Pay_Now_with_Razorpay $status_s>";
             echo "</form></center>";
             echo "</td>";
+            $_SESSION["attname"]="SELF $cname";
+          }
       }}?>
     </table>
     </div>

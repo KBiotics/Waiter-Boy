@@ -1,5 +1,9 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
  ?>
 
  <!DOCTYPE html>
@@ -165,6 +169,7 @@ include 'config1.php';
      <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
      <a href="owner_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
      <a href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
+     <a href="logout.php"><img src="meta//logout.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
@@ -270,7 +275,7 @@ while($row = mysqli_fetch_assoc($result_all))
  </div>
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">

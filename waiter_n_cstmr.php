@@ -1,6 +1,11 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
  ?>
+
 
  <!DOCTYPE html>
  <html>

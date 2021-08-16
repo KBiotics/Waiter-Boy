@@ -9,6 +9,7 @@ include 'config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -209,7 +210,7 @@ include 'config1.php';
  <body>
 
  <div class="header">
-   <a href="#default" class="logo">CompanyLogo Owner</a>
+   <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
    </div>
  </div>

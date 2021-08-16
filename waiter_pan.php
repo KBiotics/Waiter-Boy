@@ -2,6 +2,9 @@
 include 'config1.php';
 $o_id=$_SESSION["order_id"];
 $Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
  ?>
 
  <!DOCTYPE html>
@@ -360,7 +363,7 @@ $Attname=$_SESSION["attname"];
    </script>
 
 <form method=post action="">
-<input type="hidden" name="status" value="confirmed"><br>
+<input type="hidden" name="status" value="Confirmed"><br>
 <center><input type=submit name=order class="confirm" value="Confirm Order"></center>
 </form>
  </div>

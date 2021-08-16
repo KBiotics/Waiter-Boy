@@ -1,5 +1,9 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
 $o_id="";
 $o_id1=$Dname = mysqli_real_escape_string($con,$_POST['o_id']);
 $o_id2=$_SESSION["order_id"];

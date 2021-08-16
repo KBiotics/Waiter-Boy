@@ -1,6 +1,9 @@
 <?php
 include 'config1.php';
 $Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
  ?>
 
  <!DOCTYPE html>
@@ -137,13 +140,12 @@ background-color: white;
 <div class="home">
   <table class="g_table">
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_index.php';">
-        <img src="meta//home.png" style="height: 100px; width:100px;  "><br>Home</button></td>
       <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="meta//newc.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_history_home.php';"><img src="meta//history.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
     </tr>
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_history_home.php';"><img src="meta//history.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
-      <td><button  class="g_button" onclick="window.location.href='waiter_index.php';"><img src="meta//logout.ico" style="height: 100px; width:100px;  "><br>Logout</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_index.php';"><img src="meta//Payment QR.png" style="height: 100px; width:100px;"><br>Payment QR</button></td>
+      <td><button  class="g_button" onclick="window.location.href='logout.php';"><img src="meta//logout.ico" style="height: 100px; width:100px;  "><br>Logout</button></td>
     </tr>
   </table>
 </div>

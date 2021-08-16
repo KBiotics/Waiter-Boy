@@ -1,5 +1,9 @@
 <?php
 include 'config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
 $Wid = mysqli_real_escape_string($con,$_POST['rem_w']);
 echo "$Wid";
 $sql_query_update = "DELETE FROM managers WHERE id='".$Wid."'";

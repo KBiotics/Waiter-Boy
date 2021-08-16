@@ -1,6 +1,9 @@
 <?php
 include 'config1.php';
 $Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
  ?>
 
  <!DOCTYPE html>
@@ -130,6 +133,7 @@ $Attname=$_SESSION["attname"];
      <a class="active" href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
      <a href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
      <a href="manager_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
+     <a href="logout.php"><img src="meta//logout.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 

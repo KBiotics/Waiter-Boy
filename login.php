@@ -172,6 +172,10 @@ cursor: pointer;
   height: 50px;
   width: 300px;
 }
+footer{
+  background-color: rgba(5, 0, 255, 0.37);
+  color: white;
+}
 
 @media screen and (max-width: 500px) {
   .loginWrapper{
@@ -243,6 +247,9 @@ cursor: pointer;
 
 </section>
 
+<footer>
+  <center> <h3>Made with Love of KBiotics</h3> </center>
+</footer>
   </body>
 </html>
 

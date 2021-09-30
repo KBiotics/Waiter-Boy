@@ -1,0 +1,65 @@
+<?php
+include 'config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:index.php");
+}
+$o_id=$_SESSION["order_id"];
+ ?>
+<?php
+if(isset($_POST['atp'])){
+  $D="D";
+  $qty="qty";
+  $sql_query1 = "SELECT * FROM `cstmr`WHERE id='".$o_id."'" ;
+          $result = mysqli_query($con,$sql_query1);
+      while($row = mysqli_fetch_assoc($result))
+      {
+       $D_temp=$row['D_temp'];
+       $qty_temp=$row['qty_temp'];
+
+       $D_temp=$D_temp+1;
+       $qty_temp=$qty_temp+1;
+       echo "$qty_temp";
+      }
+      $D="$D$D_temp";
+      $qty="$qty$qty_temp";
+
+ $Dname = mysqli_real_escape_string($con,$_POST['id']);
+ $qtyo = mysqli_real_escape_string($con,$_POST['qty']);
+ $sql_query_update = "UPDATE cstmr SET $D='".$Dname."' ,$qty='".$qtyo."' ,D_temp='".$D_temp."' ,qty_temp='".$qty_temp."' WHERE id='".$o_id."'";
+ $result_update = mysqli_query($con,$sql_query_update);
+   if($result_update==0)
+   {
+     $_SESSION["order_id"]=$o_id;
+     ?><script>
+
+              alert("Something went Wrong");
+              </script>
+       <?php
+       ?>    <script>
+            window.location.href = "waiter_order2.php";
+             </script>
+         <?php
+
+   }
+   else
+   {
+     //echo "sucessfully updated";
+     $_SESSION["order_id"]=$o_id;
+     ?><script>
+
+              alert("Pan sucessfully updated");
+              </script>
+       <?php
+       ?>    <script>
+            window.location.href = "waiter_order2.php";
+             </script>
+         <?php
+   }?>
+   <div class="pan">
+     <?php echo $D_temp ?>
+   </div>
+   <?php
+
+   }
+ ?>

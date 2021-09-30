@@ -373,7 +373,7 @@ if(isset($_POST['wlogin'])){
  					$_SESSION["attname"]=$Attname;
  						    ?>  <script>
 
-               window.location.href = "manager.php";
+               window.location.href = "manager/manager.php";
                 </script>
  			<?php
 

@@ -136,7 +136,7 @@ if ($Attname=='') {
      <a href="logout.php"><img src="meta//logout.png" alt="" height"50" width="50"></a>
    </div>
  </div>
-<a href="waiter_index.php">Instant Order (Direct)</a>
+<a href="waiter_index.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;">Instant Order (Direct)</a>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='' ORDER BY id DESC ";

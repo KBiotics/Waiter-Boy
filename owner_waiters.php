@@ -137,6 +137,7 @@ if ($Attname=='') {
      <a href="owner.php">Home <img src="meta//home.png" alt="" height"50" width="50"></a>
      <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
      <a href="owner_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="owner_stock.php">Stocks<img src="meta//stock.png" alt="" height"50" width="50"></a>
      <a class="active" href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>

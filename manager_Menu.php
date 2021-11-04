@@ -163,6 +163,16 @@ if ($Attname=='') {
              <form class="" action="" method="post">
                <input type="text" class="Dname" name="Dname" value="" placeholder="Dish Name" required>
                <input type="text" class="Dprice" name="Dprice" value="" placeholder="Price" required>
+<?php
+$sql_query_s = "SELECT * FROM `stock` ";
+$result_s = mysqli_query($con,$sql_query_s);
+ ?>
+<select class="Dname" name="mang_stock">
+  <?php while($row_s = mysqli_fetch_array($result_s)):;?>
+    <?php $option=$row_s['1'] ?>
+  <option value="<?php echo $option?>"><?php echo $option ?></option>
+<?php endwhile?>
+</select>
                <input type="submit" class="submit" name="submit" value="Submit">
              </form>
          </div>
@@ -297,8 +307,9 @@ document.addEventListener('DOMContentLoaded', function() {
  if(isset($_POST['submit'])){
  $Dname = mysqli_real_escape_string($con,$_POST['Dname']);
  $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
+ $mang_stock = mysqli_real_escape_string($con,$_POST['mang_stock']);
  $Stackt = "a";
- $sql_query_insert = "INSERT INTO menu(Dname, Dprice, StackT) values ('$Dname',' $Dprice','$Stackt')";
+ $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock, StackT) values ('$Dname',' $Dprice',' $mang_stock','$Stackt')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {

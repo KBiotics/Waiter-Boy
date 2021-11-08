@@ -135,6 +135,7 @@ $result = mysqli_query($con,$sql_query1);
       <tbody id="myTable">
     <?php while($row = mysqli_fetch_assoc($result))
       {
+        $stock_id=$row['mang_stock_id'];
         echo "<tr>";
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['Dname'] . "</td>";
@@ -154,7 +155,7 @@ $result = mysqli_query($con,$sql_query1);
               table.rows[i].onclick = function()
               {
                 document.getElementById("id").value = this.cells[0].innerHTML;
-                document.getElementById("name").value = this.cells[1].innerHTML;
+                document.getElementById("dname").value = this.cells[1].innerHTML;
                 document.getElementById("price").value = this.cells[2].innerHTML;
               };
           }
@@ -243,6 +244,25 @@ if(isset($_POST['atp'])){
    else
    {
      //echo "sucessfully updated";
+     $sql_query1 = "SELECT * FROM `menu`WHERE id='".$Dname."'" ;
+             $result = mysqli_query($con,$sql_query1);
+         while($row = mysqli_fetch_assoc($result))
+         {
+          $stock_id=$row['mang_stock_id'];
+        }
+     $stock="$stock_id";
+     $stock_qty="$qtyo";
+     $sql_query_update_stock = "UPDATE stock SET s_tps=s_tps-$stock_qty WHERE id='".$stock."'";
+     $result_update_stock = mysqli_query($con,$sql_query_update_stock);
+       if($result_update_stock==0)
+       {
+         //echo "not updated";
+
+       }
+       else
+       {
+        // echo "Stock updated";
+       }
      ?><script>
 
               alert("sucessfully updated");

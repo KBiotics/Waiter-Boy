@@ -159,6 +159,7 @@ if ($Attname=='') {
      {
        $D1N=$row['Dname'];
        $D1P=$row['Dprice'];
+       $D1_mang_stock=$row['mang_stock'];
      }
      $fprice1=$qty1*$D1P;
      $sql_query2 = "SELECT * FROM `menu` WHERE id='".$D2."'";
@@ -167,6 +168,7 @@ if ($Attname=='') {
        {
          $D2N=$row['Dname'];
          $D2P=$row['Dprice'];
+         $D2_mang_stock=$row['mang_stock'];
        }
        $fprice2=$qty2*$D2P;
 
@@ -176,6 +178,7 @@ if ($Attname=='') {
          {
            $D3N=$row['Dname'];
            $D3P=$row['Dprice'];
+           $D3_mang_stock=$row['mang_stock'];
          }
          $fprice3=$qty3*$D3P;
 
@@ -185,6 +188,7 @@ if ($Attname=='') {
            {
              $D4N=$row['Dname'];
              $D4P=$row['Dprice'];
+             $D4_mang_stock=$row['mang_stock'];
            }
            $fprice4=$qty4*$D4P;
 
@@ -194,6 +198,7 @@ if ($Attname=='') {
              {
                $D5N=$row['Dname'];
                $D5P=$row['Dprice'];
+               $D5_mang_stock=$row['mang_stock'];
              }
              $fprice5=$qty5*$D5P;
 
@@ -203,6 +208,7 @@ if ($Attname=='') {
                {
                  $D6N=$row['Dname'];
                  $D6P=$row['Dprice'];
+                 $D6_mang_stock=$row['mang_stock'];
                }
                $fprice6=$qty6*$D6P;
 
@@ -212,6 +218,7 @@ if ($Attname=='') {
                  {
                    $D7N=$row['Dname'];
                    $D7P=$row['Dprice'];
+                   $D7_mang_stock=$row['mang_stock'];
                  }
                  $fprice7=$qty7*$D7P;
 
@@ -221,6 +228,7 @@ if ($Attname=='') {
                    {
                      $D8N=$row['Dname'];
                      $D8P=$row['Dprice'];
+                     $D8_mang_stock=$row['mang_stock'];
                    }
                    $fprice8=$qty8*$D8P;
 
@@ -230,6 +238,7 @@ if ($Attname=='') {
                      {
                        $D9N=$row['Dname'];
                        $D9P=$row['Dprice'];
+                       $D9_mang_stock=$row['mang_stock'];
                      }
                      $fprice9=$qty9*$D9P;
 
@@ -239,6 +248,7 @@ if ($Attname=='') {
                        {
                          $D10N=$row['Dname'];
                          $D10P=$row['Dprice'];
+                         $D10_mang_stock=$row['mang_stock'];
                        }
                        $fprice10=$qty10*$D10P;
 
@@ -248,6 +258,7 @@ if ($Attname=='') {
                          {
                            $D11N=$row['Dname'];
                            $D11P=$row['Dprice'];
+                           $D11_mang_stock=$row['mang_stock'];
                          }
                          $fprice11=$qty11*$D11P;
 
@@ -257,6 +268,7 @@ if ($Attname=='') {
                            {
                              $D12N=$row['Dname'];
                              $D12P=$row['Dprice'];
+                             $D12_mang_stock=$row['mang_stock'];
                            }
                            $fprice12=$qty12*$D12P;
 
@@ -409,10 +421,28 @@ if(isset($_POST['order'])){
    }
    else
    {
+     $s_tps_new=5;
+     $stock="1";
+     $sql_query_update_stock = "UPDATE stock SET s_tps='".$s_tps_new."' WHERE id='".$stock."'";
+     $result_update_stock = mysqli_query($con,$sql_query_update_stock);
+       if($result_update_stock==0)
+       {
+         echo "not updated";
+
+       }
+       else
+       {
+         ?><script>
+
+                  alert("<?php echo "$D1_mang_stock $qty1"; ?>");
+                  </script>
+           <?php
+       }
      //echo "sucessfully updated";
+
      ?><script>
 
-              alert("sucessfully updated");
+              alert("Order sucessfully Placed.");
               </script>
        <?php
    }?>

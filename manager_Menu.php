@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
  $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
  $mang_stock = mysqli_real_escape_string($con,$_POST['mang_stock']);
  $Stackt = "a";
- $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock, StackT) values ('$Dname',' $Dprice',' $mang_stock','$Stackt')";
+ $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock_id, StackT) values ('$Dname',' $Dprice',' $mang_stock','$Stackt')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {

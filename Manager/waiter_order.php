@@ -244,6 +244,25 @@ if(isset($_POST['atp'])){
    else
    {
      //echo "sucessfully updated";
+     $sql_query1 = "SELECT * FROM `menu`WHERE id='".$Dname."'" ;
+             $result = mysqli_query($con,$sql_query1);
+         while($row = mysqli_fetch_assoc($result))
+         {
+          $stock_id=$row['mang_stock_id'];
+        }
+     $stock="$stock_id";
+     $stock_qty="$qtyo";
+     $sql_query_update_stock = "UPDATE stock SET s_tps=s_tps-$stock_qty WHERE id='".$stock."'";
+     $result_update_stock = mysqli_query($con,$sql_query_update_stock);
+       if($result_update_stock==0)
+       {
+         //echo "not updated";
+
+       }
+       else
+       {
+        // echo "Stock updated";
+       }
      ?><script>
 
               alert("sucessfully updated");

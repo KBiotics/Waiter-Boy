@@ -214,9 +214,15 @@ $result = mysqli_query($con,$sql_query1);
     <?php while($row = mysqli_fetch_assoc($result))
       {
         echo "<tr>";
+        $total_plates=$row['s_tps'];
+        $total_a_kg=$row['s_kg'];
+        $plates_per_kg=$row['s_pkg'];
+        $pkg=1000;
+        $remaing_kg=(($pkg/$plates_per_kg)*$total_plates)/100;
+
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['s_name'] . "</td>";
-            echo "<td>" . $row['s_kg'] ."</td>";
+            echo "<td>" . $remaing_kg ."</td>";
             echo "<td>" . $row['s_pkg'] ."</td>";
             echo "<td>" . $row['s_tps'] ."</td>";
             echo "<td> <input type=radio name= value=></td>";
@@ -326,7 +332,7 @@ document.getElementById("tplates").value = num1 * num2;
  <?php
  if(isset($_POST['submit'])){
  $s_name = mysqli_real_escape_string($con,$_POST['s_name']);
- $s_kg = mysqli_real_escape_string($con,$_POST['s_kg']);
+ $s_kg = mysqli_real_escape_string($con,$_POST['s_kg'])*1000;
  $s_pkg = mysqli_real_escape_string($con,$_POST['s_pkg']);
  $s_tps = mysqli_real_escape_string($con,$_POST['s_tps']);
  $Stackt = "a";

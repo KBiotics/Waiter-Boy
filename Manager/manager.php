@@ -100,6 +100,13 @@ if ($Attname=='') {
    font-size: 23px;
    font-weight: bold;
  }
+ .print{
+   background-color: #1d07ff;
+   border: none;
+   color: white;
+   font-size: 23px;
+   font-weight: bold;
+ }
  .complet:disabled{
    background-color: #c1c1c1;
    border: none;
@@ -398,6 +405,10 @@ else {
             echo  "$fD_name11"."<br>" ;
             echo  "$fD_name12"."<br>" ;
             echo  "Total : ₹$total"."<br>" ;
+            echo "<br><form target=blank action=invoice.php method=post >";
+            echo "<input type=hidden name=o_id value=$o_id>";
+            echo "<input type=submit name=submit class=print value=Print>";
+            echo "</form></center>";
 
             if ($status_s=='Disabled') {
               echo "<center><img src=meta/paid2.png alt=Paid class=status_paid>";

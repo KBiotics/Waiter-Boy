@@ -340,6 +340,7 @@ else {
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);
+   $D1P=0;
    while($row = mysqli_fetch_assoc($result17))
      {
        $D1N=$row['Dname'];
@@ -355,6 +356,7 @@ else {
 
      $sql_query2 = "SELECT * FROM `menu` WHERE id='".$D2."'";
      $result2 = mysqli_query($con,$sql_query2);
+     $D2P=0;
      while($row = mysqli_fetch_assoc($result2))
        {
          $D2N=$row['Dname'];
@@ -370,6 +372,7 @@ else {
 
        $sql_query3 = "SELECT * FROM `menu` WHERE id='".$D3."'";
        $result3 = mysqli_query($con,$sql_query3);
+       $D3P=0;
        while($row = mysqli_fetch_assoc($result3))
          {
            $D3N=$row['Dname'];
@@ -385,6 +388,7 @@ else {
 
          $sql_query4 = "SELECT * FROM `menu` WHERE id='".$D4."'";
          $result4 = mysqli_query($con,$sql_query4);
+         $D4P=0;
          while($row = mysqli_fetch_assoc($result4))
            {
              $D4N=$row['Dname'];
@@ -400,6 +404,7 @@ else {
 
            $sql_query5 = "SELECT * FROM `menu` WHERE id='".$D5."'";
            $result5 = mysqli_query($con,$sql_query5);
+           $D5P=0;
            while($row = mysqli_fetch_assoc($result5))
              {
                $D5N=$row['Dname'];
@@ -415,6 +420,7 @@ else {
 
              $sql_query6 = "SELECT * FROM `menu` WHERE id='".$D6."'";
              $result6 = mysqli_query($con,$sql_query6);
+             $D6P=0;
              while($row = mysqli_fetch_assoc($result6))
                {
                  $D6N=$row['Dname'];
@@ -430,6 +436,7 @@ else {
 
                $sql_query7 = "SELECT * FROM `menu` WHERE id='".$D7."'";
                $result7 = mysqli_query($con,$sql_query7);
+               $D7P=0;
                while($row = mysqli_fetch_assoc($result7))
                  {
                    $D7N=$row['Dname'];
@@ -445,6 +452,7 @@ else {
 
                  $sql_query8 = "SELECT * FROM `menu` WHERE id='".$D8."'";
                  $result8 = mysqli_query($con,$sql_query8);
+                 $D8P=0;
                  while($row = mysqli_fetch_assoc($result8))
                    {
                      $D8N=$row['Dname'];
@@ -460,6 +468,7 @@ else {
 
                    $sql_query9 = "SELECT * FROM `menu` WHERE id='".$D9."'";
                    $result9 = mysqli_query($con,$sql_query9);
+                   $D9P=0;
                    while($row = mysqli_fetch_assoc($result9))
                      {
                        $D9N=$row['Dname'];
@@ -475,6 +484,7 @@ else {
 
                      $sql_query10 = "SELECT * FROM `menu` WHERE id='".$D10."'";
                      $result10 = mysqli_query($con,$sql_query10);
+                     $D10P=0;
                      while($row = mysqli_fetch_assoc($result10))
                        {
                          $D10N=$row['Dname'];
@@ -490,6 +500,7 @@ else {
 
                        $sql_query11 = "SELECT * FROM `menu` WHERE id='".$D11."'";
                        $result11 = mysqli_query($con,$sql_query11);
+                       $D11P=0;
                        while($row = mysqli_fetch_assoc($result11))
                          {
                            $D11N=$row['Dname'];
@@ -505,6 +516,7 @@ else {
 
                          $sql_query12 = "SELECT * FROM `menu` WHERE id='".$D12."'";
                          $result12 = mysqli_query($con,$sql_query12);
+                         $D12P=0;
                          while($row = mysqli_fetch_assoc($result12))
                            {
                              $D12N=$row['Dname'];

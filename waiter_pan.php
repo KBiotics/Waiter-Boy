@@ -152,6 +152,31 @@ if ($Attname=='') {
    $qty11=$row['qty11'];
    $qty12=$row['qty12'];
    }
+   $D1P=0;
+   $D2P=0;
+   $D3P=0;
+   $D4P=0;
+   $D5P=0;
+   $D6P=0;
+   $D7P=0;
+   $D8P=0;
+   $D9P=0;
+   $D10P=0;
+   $D11P=0;
+   $D12P=0;
+
+   $D1N="-";
+   $D2N="-";
+   $D3N="-";
+   $D4N="-";
+   $D5N="-";
+   $D6N="-";
+   $D7N="-";
+   $D8N="-";
+   $D9N="-";
+   $D10N="-";
+   $D11N="-";
+   $D12N="-";
 
    $sql_query1 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result = mysqli_query($con,$sql_query1);

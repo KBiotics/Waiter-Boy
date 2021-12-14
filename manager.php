@@ -197,7 +197,6 @@ else {
   $pay_ref="$pay_ref1";
 }
 }
-
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);
    while($row = mysqli_fetch_assoc($result17))

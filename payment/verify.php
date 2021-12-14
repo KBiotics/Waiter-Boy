@@ -61,7 +61,7 @@ if ($success === true)
                           </script>
                    <?php
                    ?>    <script>
-                        window.location.href = "../manager.php";
+                        window.location.href = "../Manager/manager.php";
                          </script>
                      <?php
                }
@@ -69,7 +69,7 @@ if ($success === true)
                {
                  //echo "sucessfully updated";
                  ?>    <script>
-                      window.location.href = "../manager.php";
+                      window.location.href = "../Manager/manager.php";
                        </script>
                    <?php
                }

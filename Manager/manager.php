@@ -143,7 +143,7 @@ if ($Attname=='') {
      <a href="logout.php"><img src="meta//logout.png" alt="" height"50" width="50"></a>
    </div>
  </div>
-<a href="waiter_index.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;">Instant Order (Direct)</a>
+<a href="waiter_index.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;">Instant Order (Direct)</a><br><br><br>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='' ORDER BY id DESC ";
@@ -204,7 +204,18 @@ else {
   $pay_ref="$pay_ref1";
 }
 }
-
+$D1P=0;
+$D2P=0;
+$D3P=0;
+$D4P=0;
+$D5P=0;
+$D6P=0;
+$D7P=0;
+$D8P=0;
+$D9P=0;
+$D10P=0;
+$D11P=0;
+$D12P=0;
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);
    while($row = mysqli_fetch_assoc($result17))
@@ -431,7 +442,7 @@ else {
             echo "<input type=submit name=payment class=start value=Submit $status_s>";
             echo "</form>";
 
-            echo "<b>OR</b><br><form action=payment\pay.php method=post >";
+            echo "<b>OR</b><br><form action=../payment/pay.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=cname value=$cname>";
             echo "<input type=hidden name=money value=$total>";

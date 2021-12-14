@@ -123,7 +123,7 @@ include 'config1.php';
    <div class="header-right">
    </div>
  </div>
-
+<br><br><br>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' ORDER BY id DESC ";
@@ -182,6 +182,18 @@ $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status=$row['status'];
 }
+$D1P=0;
+$D2P=0;
+$D3P=0;
+$D4P=0;
+$D5P=0;
+$D6P=0;
+$D7P=0;
+$D8P=0;
+$D9P=0;
+$D10P=0;
+$D11P=0;
+$D12P=0;
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);

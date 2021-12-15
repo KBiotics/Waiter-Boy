@@ -97,7 +97,7 @@ if ($Attname=='') {
  <body>
 
  <div class="header">
-   <a href="cook_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a  href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
      <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>

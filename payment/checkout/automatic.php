@@ -14,7 +14,7 @@
     data-prefill.email="<?php echo $data['prefill']['email']?>"
     data-prefill.contact="<?php echo $data['prefill']['contact']?>"
     data-notes.shopping_order_id="3456"
-    data-order_id="<?php echo $data['order_id']?>"
+    data-notes.shopping_order_id="<?php echo $data['order_id_customer']?>"
     <?php if ($displayCurrency !== 'INR') { ?> data-display_amount="<?php echo $data['display_amount']?>" <?php } ?>
     <?php if ($displayCurrency !== 'INR') { ?> data-display_currency="<?php echo $data['display_currency']?>" <?php } ?>
   >

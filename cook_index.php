@@ -121,12 +121,13 @@ include 'config1.php';
  <div class="header">
    <a href="cook_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
+     <a href="" class="logo"><img src="meta/refresh.png" alt="logo" width="50" height="50" onclick="location.reload();" ></a>
    </div>
  </div>
 <br><br><br>
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' AND status!='Out for Delivery' AND status!='Delivered' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -137,6 +138,11 @@ $result = mysqli_query($con,$sql_query1);
         $o_id=$row['id'];
         $cname=$row['name'];
         $ctno=$row['tno'];
+        $address=$row['address'];
+$mo=$row['mo'];
+if ($ctno=="999") {
+  $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
+}
         $status_s=$row['status'];
         if ($status_s=='Cooking') {
           $status_s="Disabled";
@@ -146,7 +152,7 @@ $result = mysqli_query($con,$sql_query1);
         }
 
         $status_c=$row['status'];
-        if ($status_c=='conformed') {
+        if ($status_c=='Confirmed') {
           $status_c="Disabled";
         }
         else {

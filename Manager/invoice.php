@@ -72,6 +72,11 @@ td{
              $o_id=$row['id'];
              $cname=$row['name'];
              $ctno=$row['tno'];
+             $address=$row['address'];
+             $mo=$row['mo'];
+             if ($ctno=="999") {
+               $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
+             }
              $status_s=$row['pay_m'];
              if ($status_s!="") {
                $status_s="Disabled";

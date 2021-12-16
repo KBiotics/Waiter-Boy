@@ -251,6 +251,11 @@ $result = mysqli_query($con,$sql_query1);
       $o_id=$row['id'];
       $cname=$row['name'];
       $ctno=$row['tno'];
+      $address=$row['address'];
+$mo=$row['mo'];
+if ($ctno=="999") {
+$ctno=" $address <br> Mo. <a href=tel:$mo>$mo</a>";
+}
       $status_s=$row['pay_m'];
       $status=$row['status'];
       if ($status_s!="") {
@@ -261,13 +266,19 @@ $result = mysqli_query($con,$sql_query1);
       }
       $statusimg='blank';
       if ($status=='confirmed') {
-        $statusimg='../meta/Status1.png';
+        $statusimg='../meta/bell.png';
       }
       if ($status=='Cooking') {
-        $statusimg='../meta/Status2.png';
+        $statusimg='../meta/Cooking.png';
       }
       if ($status=='Served') {
-        $statusimg='../meta/Status3.png';
+        $statusimg='../meta/Cooked.png';
+      }
+      if ($status=='Out for Delivery') {
+        $statusimg='../meta/Out for Delivery.png';
+      }
+      if ($status=='Delivered') {
+        $statusimg='../meta/Delivered.png';
       }
       if ($status=='') {
         $statusimg='../meta/Status0.png';
@@ -310,7 +321,23 @@ $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status_l=$row['status'];
+if ($status_l=='Served') {
+  $status_l='Cooked';
 }
+}
+
+$D1P=0;
+$D2P=0;
+$D3P=0;
+$D4P=0;
+$D5P=0;
+$D6P=0;
+$D7P=0;
+$D8P=0;
+$D9P=0;
+$D10P=0;
+$D11P=0;
+$D12P=0;
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);
@@ -496,7 +523,7 @@ $status_l=$row['status'];
         echo "<td class=card>";
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
-            echo  "Table No : ".$ctno."<br>" ;
+            echo  "Address : ".$ctno."<br>" ;
             echo "<h3 class=order><center>Order</center></h3>";
             echo  "<h4><center>Status : ".$status_l."</center></h4><br>" ;
             echo  "$fD_name1"."<br>" ;

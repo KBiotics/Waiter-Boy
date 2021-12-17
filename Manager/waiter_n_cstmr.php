@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
   header("location:index.php");
@@ -16,7 +16,7 @@ if ($Attname=='') {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/c75d7f5569.js"></script>
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -100,7 +100,7 @@ if ($Attname=='') {
  <body>
 
  <div class="header">
-   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a class="active" href="waiter_index.php"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
    </div>

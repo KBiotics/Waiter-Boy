@@ -38,8 +38,8 @@
   </body>
 </html>
 <?php
-include '../config1.php';
-require('config.php');
+include '../../config/config1.php';
+require('../../config/config.php');
 require('razorpay-php/Razorpay.php');
 $money=mysqli_real_escape_string($con,$_POST['money']);
 $o_ref = mysqli_real_escape_string($con,$_POST['o_id']);
@@ -106,6 +106,7 @@ $data = [
     "color"             => "#F37254"
     ],
     "order_id"          => $razorpayOrderId,
+    "order_id_customer"          => $o_ref,
 ];
 
 if ($displayCurrency !== 'INR')

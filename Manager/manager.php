@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
   header("location:index.php");
@@ -13,7 +13,7 @@ if ($Attname=='') {
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -135,12 +135,12 @@ if ($Attname=='') {
  <body>
 
  <div class="header">
-   <a href="manager.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="manager.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a class="active" href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
-     <a href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
-     <a href="manager_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
-     <a href="logout.php"><img src="meta//logout.png" alt="" height"50" width="50"></a>
+     <a class="active" href="manager.php">Home<img src="../meta//home.png" alt="" height"50" width="50"></a>
+     <a href="manager_Menu.php">Menu <img src="../meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="manager_waiters.php">Waiters<img src="../meta//waiter.png" alt="" height"50" width="50"></a>
+     <a href="logout.php"><img src="../meta//logout.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 <a href="waiter_index.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;">Instant Order (Direct)</a><br><br><br>
@@ -427,7 +427,7 @@ $D12P=0;
             echo "</form></center>";
 
             if ($status_s=='Disabled') {
-              echo "<center><img src=meta/paid2.png alt=Paid class=status_paid>";
+              echo "<center><img src=../meta/paid2.png alt=Paid class=status_paid>";
               echo "<form action=pay_m.php method=post >";
               echo "<input type=hidden name=o_id value=$o_id>";
               echo "Payment Method : $pay_method<br>";
@@ -435,7 +435,7 @@ $D12P=0;
               echo "</form></center>";
             }
             else {
-              echo "<center><img src=meta/unpaid.png alt=UnPaid class=status_paid></center>";
+              echo "<center><img src=../meta/unpaid.png alt=UnPaid class=status_paid></center>";
             echo "<center><form action=pay_m.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=total value=$total>";
@@ -447,7 +447,7 @@ $D12P=0;
             echo "<input type=submit name=payment class=start value=Submit $status_s>";
             echo "</form>";
 
-            echo "<b>OR</b><br><form action=../payment/pay.php method=post >";
+            echo "<b>OR</b><br><form action=payment/pay.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
             echo "<input type=hidden name=cname value=$cname>";
             echo "<input type=hidden name=money value=$total>";

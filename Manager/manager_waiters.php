@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
   header("location:index.php");
@@ -13,7 +13,7 @@ if ($Attname=='') {
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -106,7 +106,7 @@ if ($Attname=='') {
    background-color: rgb(62, 247, 0);
  }
  .remove_w{
-   background:url(meta/remove.png);
+   background:url(../meta/remove.png);
    background-repeat: round;
    border: none;
    width: 30px;
@@ -132,11 +132,11 @@ if ($Attname=='') {
  <body>
 
  <div class="header">
-   <a href="manager.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="manager.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a href="manager.php">Home<img src="meta//home.png" alt="" height"50" width="50"></a>
-     <a href="manager_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
-     <a class="active" href="manager_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
+     <a href="manager.php">Home<img src="../meta//home.png" alt="" height"50" width="50"></a>
+     <a href="manager_Menu.php">Menu <img src="../meta//menu.png" alt="" height"50" width="50"></a>
+     <a class="active" href="manager_waiters.php">Waiters<img src="../meta//waiter.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 

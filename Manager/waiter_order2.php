@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
   header("location:index.php");
@@ -26,7 +26,7 @@ $_SESSION["order_id"]=$o_id;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/c75d7f5569.js"></script>
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -112,12 +112,12 @@ $_SESSION["order_id"]=$o_id;
  <body>
 
  <div class="header">
-   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a class="active" href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
-     <a href="waiter_pan.php">PAN<img src="meta//pan.png" alt="" height"50" width="50"></a>
-     <a href="waiter_n_cstmr.php">New Customer<img src="meta//newc.ico" alt="" height"50" width="50"></a>
-     <a href="waiter_history.php">History<img src="meta//history.png" alt="" height"50" width="50"></a>
+     <a class="active" href="waiter_order.php">Order <img src="../meta//bell.png" alt="" height"50" width="50"></a>
+     <a href="waiter_pan.php">PAN<img src="../meta//pan.png" alt="" height"50" width="50"></a>
+     <a href="waiter_n_cstmr.php">New Customer<img src="../meta//newc.ico" alt="" height"50" width="50"></a>
+     <a href="waiter_history.php">History<img src="../meta//history.png" alt="" height"50" width="50"></a>
    </div>
    Order ID : <?php echo "$o_id"; ?>
  </div>

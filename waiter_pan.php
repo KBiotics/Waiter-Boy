@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include 'config/config1.php';
 $o_id=$_SESSION["order_id"];
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {

@@ -1,5 +1,5 @@
 <?php
-include '../config1.php';
+include '../config/config1.php';
  ?>
 
  <!DOCTYPE html>
@@ -9,7 +9,7 @@ include '../config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -121,7 +121,7 @@ include '../config1.php';
  <div class="header">
    <a href="index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo" width="100" height="50"></a>
    <div class="header-right">
-     <a href="" class="logo"><img src="../meta/refresh.png" alt="logo" class="logo" width="50" height="50" onclick="location.reload();" ></a>
+     <a href="" class="logo"><img src="../meta/refresh.png" alt="logo"  width="50" height="50" onclick="location.reload();" ></a>
    </div>
  </div>
 <br><br><br>
@@ -144,6 +144,10 @@ if ($ctno=="999") {
   $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
 }
         $status_s=$row['status'];
+        $order_music='';
+        if ($status_s=='Served') {
+          $order_music='Ready';
+        }
         if ($status_s=='Cooking' || $status_s=='Out for Delivery' || $status_s=='Confirmed' ) {
           $status_s="Disabled";
         }
@@ -382,6 +386,12 @@ $D12P=0;
                            }
 
                            //$total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+
+                           if ($order_music=='Ready') {
+                             echo  "<audio autoplay loop>
+  <source src=../meta/new_order.mp3 type=audio/mpeg >
+</audio>" ;
+                           }
         echo "<td class=card>";
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
@@ -422,3 +432,9 @@ $D12P=0;
 
  </body>
  </html>
+
+ <script type="text/javascript">
+ setTimeout(function(){
+  window.location.reload(); // you can pass true to reload function to ignore the client cache and reload from the server
+},10000);
+ </script>

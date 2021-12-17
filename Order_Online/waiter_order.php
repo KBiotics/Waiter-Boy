@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $o_id=$_SESSION["order_id"];
 if ($o_id=='') {
   header("location:index.php");
@@ -15,7 +15,7 @@ if ($o_id=='') {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/c75d7f5569.js"></script>
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
 
  <style>
  * {box-sizing: border-box;}
@@ -102,12 +102,12 @@ if ($o_id=='') {
  <body>
 
  <div class="header">
-   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a class="active" href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
-     <a href="waiter_pan.php">Cart<img src="meta//cart.png" alt="" height"50" width="50"></a>
-     <a href="track_order.php">Track Order<img src="meta//track.png" alt="" height"50" width="50"></a>
-     <a href="logout.php">Exit<img src="meta//exit.png" alt="" height"50" width="50"></a>
+     <a class="active" href="waiter_order.php">Order <img src="../meta//bell.png" alt="" height"50" width="50"></a>
+     <a href="waiter_pan.php">Cart<img src="../meta//cart.png" alt="" height"50" width="50"></a>
+     <a href="track_order.php">Track Order<img src="../meta//track.png" alt="" height"50" width="50"></a>
+     <a href="../lost.php">Exit<img src="../meta//exit.png" alt="" height"50" width="50"></a>
    </div>
    Order ID : <?php echo "$o_id"; ?>
  </div>

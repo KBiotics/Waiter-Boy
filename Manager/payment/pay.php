@@ -1,6 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+    body{
+      background-color: #023045;
+    }
+      .razorpay-payment-button{
+        width: 50%;
+        padding: 70px;
+        margin-top: 10%;
+        font-size: 50px;
+        background-color: rgb(24, 224, 236);
+        color: white;
+        font-style: italic;
+        font-weight: bolder;
+        border: none;
+      }
+      .razorpay-payment-button:hover{
+        background-color: rgb(0, 255, 133);
+        transition: 5s;
+      }
+      @media screen and (max-width: 500px) {
+        .razorpay-payment-button{
+          width: 100%;
+          padding: 70px;
+          margin-top: 50%;
+          font-size: 50px;
+        }
+      }
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
 <?php
-include '../config1.php';
-require('config.php');
+include '../../config/config1.php';
+require('../../config/config.php');
 require('razorpay-php/Razorpay.php');
 $money=mysqli_real_escape_string($con,$_POST['money']);
 $o_ref = mysqli_real_escape_string($con,$_POST['o_id']);

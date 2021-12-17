@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include 'config/config1.php';
 $Attname=$_SESSION["attname"];
  if(isset($_POST['payment'])){
    $pay_m=mysqli_real_escape_string($con,$_POST['paym']);

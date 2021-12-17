@@ -1,6 +1,6 @@
 <?php
-include '../config1.php';
-require('config.php');
+include '../../config/config1.php';
+require('../../config/config.php');
 $o_id=$_SESSION["order_id"];
 $Attname=$_SESSION["attname"];
 
@@ -61,7 +61,7 @@ if ($success === true)
                           </script>
                    <?php
                    ?>    <script>
-                        window.location.href = "../Manager/manager.php";
+                        window.location.href = "../manager.php";
                          </script>
                      <?php
                }
@@ -69,7 +69,7 @@ if ($success === true)
                {
                  //echo "sucessfully updated";
                  ?>    <script>
-                      window.location.href = "../Manager/manager.php";
+                      window.location.href = "../manager.php";
                        </script>
                    <?php
                }

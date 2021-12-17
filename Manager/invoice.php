@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 
 $o_id=mysqli_real_escape_string($con,$_POST['o_id']);
 

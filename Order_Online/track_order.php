@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $o_id=$_SESSION["order_id"];
  ?>
 
@@ -213,13 +213,14 @@ $o_id=$_SESSION["order_id"];
  <div class="header">
    <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
+
    </div>
 
    <div class="header-right">
-     <a  href="waiter_order.php">Order <img src="meta//bell.png" alt="" height"50" width="50"></a>
-     <a  href="waiter_pan.php">Cart<img src="meta//cart.png" alt="" height"50" width="50"></a>
-     <a class="active" href="track_order.php">Track Order<img src="meta//track.png" alt="" height"50" width="50"></a>
-     <a href="logout.php">Exit<img src="meta//exit.png" alt="" height"50" width="50"></a>
+     <a  href="waiter_order.php">Order <img src="../meta//bell.png" alt="" height"50" width="50"></a>
+     <a  href="waiter_pan.php">Cart<img src="../meta//cart.png" alt="" height"50" width="50"></a>
+     <a class="active" href="track_order.php">Track Order<img src="../meta//track.png" alt="" height"50" width="50"></a>
+     <a href="../lost.php">Exit<img src="../meta//exit.png" alt="" height"50" width="50"></a>
      Order ID : <?php echo "$o_id"; ?>
    </div>
  </div>
@@ -265,7 +266,7 @@ $ctno=" $address <br> Mo. <a href=tel:$mo>$mo</a>";
         $status_s="";
       }
       $statusimg='blank';
-      if ($status=='confirmed') {
+      if ($status=='Confirmed') {
         $statusimg='../meta/bell.png';
       }
       if ($status=='Cooking') {

@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
   header("location:index.php");
@@ -13,7 +13,7 @@ if ($Attname=='') {
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
 
@@ -130,7 +130,7 @@ background-color: white;
  <body>
 
  <div class="header">
-   <a href="waiter_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
    </div>
  </div>
@@ -141,12 +141,12 @@ background-color: white;
 <div class="home">
   <table class="g_table">
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="meta//newc.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
-      <td><button class="g_button" onclick="window.location.href='waiter_history_home.php';"><img src="meta//history.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_n_cstmr.php';"><img src="../meta//newc.ico" style="height: 100px; width:100px;  "><br>New Customer</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_history_home.php';"><img src="../meta//history.png" style="height: 100px; width:100px;  "><br>Histroy</button></td>
     </tr>
     <tr>
-      <td><button class="g_button" onclick="window.location.href='waiter_index.php';"><img src="meta//Payment QR.png" style="height: 100px; width:100px;"><br>Payment QR</button></td>
-      <td><button  class="g_button" onclick="window.location.href='logout.php';"><img src="meta//logout.ico" style="height: 100px; width:100px;  "><br>Logout</button></td>
+      <td><button class="g_button" onclick="window.location.href='waiter_index.php';"><img src="../meta//Payment QR.png" style="height: 100px; width:100px;"><br>Payment QR</button></td>
+      <td><button  class="g_button" onclick="window.location.href='logout.php';"><img src="../meta//logout.ico" style="height: 100px; width:100px;  "><br>Logout</button></td>
     </tr>
   </table>
 </div>

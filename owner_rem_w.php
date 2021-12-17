@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include 'config/config1.php';
 $Wid = mysqli_real_escape_string($con,$_POST['rem_w']);
 echo "$Wid";
 $sql_query_update = "DELETE FROM waiters WHERE id='".$Wid."'";

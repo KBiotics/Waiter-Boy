@@ -1,12 +1,13 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
  ?>
 
  <!DOCTYPE html>
  <html>
  <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="meta/logo.css">
+<link rel="stylesheet" href="../meta/logo.css">
+<script src="https://use.fontawesome.com/8b3aa3d333.js"></script>
  <style>
  body {
    margin: 5%;
@@ -80,13 +81,27 @@ include 'config1.php';
    transition: width 250ms 200ms, transform 350ms 1350ms, opacity 350ms 1550ms;
    width: 56px;
  }
+ .lcard{
+   width: 100%;
+   background-color: rgba(0, 255, 45, 0.42);
+   margin: 15px;
+   padding: 25px;
+ }
+ .link_404{
+   color: #fff !important;
+   padding: 10px 12px;
+   font-size: 25px;
+   margin: 20px 0;
+   display: inline-block;
+
+ }
 
  </style>
  </head>
  <body>
 
  <div class="main">
-   <center><img src="meta/logo.png" alt="" width="100px" height="100px"></center>
+   <center><img src="../meta/logo.png" alt="" width="100px" height="100px"></center>
    <form class="" action="" method="post">
      <div class="inputs">
          <input class="input" type="text" name="fname" placeholder="First Name">
@@ -101,6 +116,10 @@ include 'config1.php';
 
    </form>
 
+    </div>
+    <div class="lcard">
+      <center><a href="../Order_Online" class="link_404"> <i class="fa fa-cutlery" aria-hidden="true" style=" font-size: 50px; color: #ff0048"></i><br> New Order</a>
+      <a href="../App" class="link_404"><i class="fa fa-truck" aria-hidden="true" style=" font-size: 50px; color: #7500ff"></i><br>Track Order</a></center>
     </div>
  </body>
  </html>

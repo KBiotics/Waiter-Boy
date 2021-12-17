@@ -1,5 +1,5 @@
 <?php
-include 'config1.php';
+include '../config/config1.php';
  ?>
 
  <!DOCTYPE html>
@@ -212,6 +212,7 @@ include 'config1.php';
  <div class="header">
    <a href="waiter_index.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
+     <a href="../lost.php">Exit<img src="../meta//exit.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 <div class="card1">
@@ -234,6 +235,11 @@ $result = mysqli_query($con,$sql_query1);
       $o_id=$row['id'];
       $cname=$row['name'];
       $ctno=$row['tno'];
+      $address=$row['address'];
+$mo=$row['mo'];
+if ($ctno=="999") {
+$ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
+}
       $status_s=$row['pay_m'];
       $status=$row['status'];
       if ($status_s!="") {
@@ -251,6 +257,12 @@ $result = mysqli_query($con,$sql_query1);
       }
       if ($status=='Served') {
         $statusimg='../meta/Status3.png';
+      }
+      if ($status=='Out for Delivery') {
+        $statusimg='../meta/Out for Delivery.png';
+      }
+      if ($status=='Delivered') {
+        $statusimg='../meta/Delivered.png';
       }
       if ($status=='') {
         $statusimg='../meta/Status0.png';
@@ -294,6 +306,18 @@ $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status_l=$row['status'];
 }
+$D1P=0;
+$D2P=0;
+$D3P=0;
+$D4P=0;
+$D5P=0;
+$D6P=0;
+$D7P=0;
+$D8P=0;
+$D9P=0;
+$D10P=0;
+$D11P=0;
+$D12P=0;
 
    $sql_query17 = "SELECT * FROM `menu` WHERE id='".$D1."'";
    $result17 = mysqli_query($con,$sql_query17);

@@ -1,5 +1,9 @@
 <?php
 include '../config/config1.php';
+$Attname=$_SESSION["attname"];
+if ($Attname=='') {
+  header("location:login.php");
+}
  ?>
 
  <!DOCTYPE html>
@@ -103,6 +107,11 @@ include '../config/config1.php';
    font-size: 23px;
    font-weight: bold;
  }
+ .u_tab{
+   background: #ffffff;
+   padding: 15px;
+   box-shadow: 5px 5px 5px 5px #cccccc;
+ }
  @media screen and (max-width: 500px) {
    .header a {
      float: none;
@@ -124,7 +133,11 @@ include '../config/config1.php';
      <a href="" class="logo"><img src="../meta/refresh.png" alt="logo"  width="50" height="50" onclick="location.reload();" ></a>
    </div>
  </div>
-<br><br><br>
+
+<div class="u_tab">
+  <?php echo "<b>Welcome</b> <p>$Attname" ?>
+    <center>click <img src="../meta/refresh.png" width="15" height="15" alt=""> icon to start notification voice.</center>
+</div><br>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Delivered' AND status!='' AND tno='999' ORDER BY id DESC ";
@@ -191,6 +204,7 @@ $qty10=$row['qty10'];
 $qty11=$row['qty11'];
 $qty12=$row['qty12'];
 $status=$row['status'];
+$attname=$row['d_guy'];
 }
 $D1P=0;
 $D2P=0;
@@ -397,7 +411,8 @@ $D12P=0;
             echo  $cname."<br>" ;
             echo  "Table No : ".$ctno."<br>" ;
             echo "<h3 class=order><center>Order</center></h3>";
-            echo  "<h4><center>Status : ".$status."</center></h4><br>" ;
+            echo  "<h4><center>Status : ".$status."</center></h4>" ;
+            echo  "<h5><center>Attempted by : ".$attname."</center></h5><br>" ;
             echo  "$fD_name1"."<br>" ;
             echo  "$fD_name2"."<br>" ;
             echo  "$fD_name3"."<br>" ;

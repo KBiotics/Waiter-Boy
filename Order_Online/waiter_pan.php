@@ -2,7 +2,7 @@
 include '../config/config1.php';
 $o_id=$_SESSION["order_id"];
 $Attname="Self";
-if ($Attname=='') {
+if ($o_id=='') {
   header("location:index.php");
 }
  ?>
@@ -119,7 +119,6 @@ if ($Attname=='') {
    </div>
    Order ID : <?php echo "$o_id"; ?>
  </div>
- <a href="manager.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;" >Back to Managers Dashboard</a>
 
 <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Ordered Dishes"/>
  <div class="Dlist">

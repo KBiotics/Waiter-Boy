@@ -11,16 +11,18 @@ include '../config/config1.php';
  <style>
  body {
    margin: 5%;
+   background-color: #000a30;
  }
 
  .main {
    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-   height: 700px;
+   height: auto;
    margin: 0 auto;
+   padding: 15px;
    max-width: 400px;
    overflow: hidden;
    position: relative;
-   background-color: #606060;
+   background-color: rgba(255, 112, 164, 0.23);
  }
 
  .inputs {
@@ -54,7 +56,7 @@ include '../config/config1.php';
  }
 
  .Next {
-   background-color: #F73D71;
+   background-color: #f90046;
    color: rgb(255, 255, 255);
    font-weight: bold;
    border: 0;
@@ -70,6 +72,9 @@ include '../config/config1.php';
    transition: box-shadow 150ms;
    width: 100%;
  }
+ .Next:hover{
+   background-color: rgb(0, 255, 134)
+ }
 
  .Next:active {
    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.3);
@@ -82,9 +87,10 @@ include '../config/config1.php';
    width: 56px;
  }
  .lcard{
-   width: 100%;
-   background-color: rgba(0, 255, 45, 0.42);
-   margin: 15px;
+   width: 50%;
+   background-color: rgba(0, 255, 45, 0.15);
+   margin: auto;
+   margin-top: 5%;
    padding: 25px;
  }
  .link_404{
@@ -101,16 +107,16 @@ include '../config/config1.php';
  <body>
 
  <div class="main">
-   <center><img src="../meta/logo.png" alt="" width="100px" height="100px"></center>
+   <center><img src="../meta/waiter.png" alt="" width="100px" height="100px"><img src="../meta/logo.png" alt="" width="250px" height="100px"> <br> <label for="" style=" color: rgb(255, 255, 255)">Online Food Order & Delivery Services</label></center><hr><br><br>
    <form class="" action="" method="post">
      <div class="inputs">
-         <input class="input" type="text" name="fname" placeholder="First Name">
-         <input class="input" type="text" name="lname" placeholder="Last Name">
+         <input class="input" type="text" name="fname" placeholder="First Name" required>
+         <input class="input" type="text" name="lname" placeholder="Last Name" required>
          <select class="input" name="city">
            <option value="City1">City1</option>
          </select>
-         <textarea name="address" class="input" rows="8" cols="80" placeholder="Address"></textarea>
-         <input class="input" type="text" name="mo" value="" placeholder="Contact No." pattern="[0-9]{10}">
+         <textarea name="address" class="input" rows="8" cols="80" placeholder="Address" required></textarea>
+         <input class="input" type="text" name="mo" value="" placeholder="Contact No." pattern="[0-9]{10}" title="Invalid Mobile Number." required>
          <input type="submit" class="Next" name="next" value="Next">
      </div>
 

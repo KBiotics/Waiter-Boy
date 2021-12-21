@@ -1,9 +1,10 @@
 <?php
 include '../config/config1.php';
+$Attname=$_SESSION["attname"];
 if(isset($_POST['start'])){
   $status="Out for Delivery";
   $o_ref = mysqli_real_escape_string($con,$_POST['o_id']);
-  $sql_query_update = "UPDATE cstmr SET status='".$status."' WHERE id='".$o_ref."'";
+  $sql_query_update = "UPDATE cstmr SET status='".$status."',d_guy='".$Attname."' WHERE id='".$o_ref."'";
   $result_update = mysqli_query($con,$sql_query_update);
     if($result_update==0)
     {

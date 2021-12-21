@@ -138,14 +138,14 @@ if ($Attname=='') {
      <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>
      <a href="owner_Menu.php">Menu <img src="meta//menu.png" alt="" height"50" width="50"></a>
      <a href="owner_stock.php">Stocks<img src="meta//stock.png" alt="" height"50" width="50"></a>
-     <a class="active" href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
-     <a href="owner_delivary_guys.php">Delivary Guys<img src="meta//Out for Delivery.png" alt="" height"50" width="50"></a>
+     <a href="owner_waiters.php">Waiters<img src="meta//waiter.png" alt="" height"50" width="50"></a>
+     <a class="active" href="owner_delivary_guys.php">Delivary Guys<img src="meta//Out for Delivery.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
  <div class="container">
    <!-- Trigger the modal with a button -->
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Waiters</button>
+   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Delivary Guy</button>
 
    <!-- Modal -->
    <div class="modal fade" id="myModal" role="dialog">
@@ -153,14 +153,15 @@ if ($Attname=='') {
        <div class="modal-content">
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">Add New Waiter</h4>
+           <h4 class="modal-title">Add New Delivary Guy</h4>
          </div>
          <div class="modal-body">
-           <center>New Waiter<center>
+           <center>New Delivary Guy<center>
              <form class="" action="" method="post">
-               <input type="text" class="name" name="name" value="" placeholder="Name" required>
-               <input type="text" class="uname" name="username" value="" placeholder="Username" required>
+               <input type="text" class="name" name="full_name" value="" placeholder="Name" required>
+               <input type="text" class="uname" name="uname" value="" placeholder="Username" required>
                <input type="text"  class="passw"name="password" value="" placeholder="Password" required>
+               <input type="text"  class="passw"name="mo" value="" placeholder="Contact Number" pattern="[0-9]{10}" required>
                <input type="submit"  class="submit" name="submit" value="Submit">
              </form>
          </div>
@@ -173,9 +174,9 @@ if ($Attname=='') {
  </div>
 
  <div class="Dlist">
-   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search Aviable Waiters"/>
+   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search Aviable Delivary Guys"/>
    <?php
-   $sql_query1 = "SELECT * FROM `waiters` ";
+   $sql_query1 = "SELECT * FROM `delivary_guys` ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -190,16 +191,18 @@ $result = mysqli_query($con,$sql_query1);
         <th>Name</th>
         <th>UserID</th>
       <th>Password</th>
+      <th>Contact</th>
      </tr>
       <tbody id="myTable">
     <?php while($row = mysqli_fetch_assoc($result))
       {
         echo "<tr>";
         echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['username'] ."</td>";
+            echo "<td>" . $row['full_name'] . "</td>";
+            echo "<td>" . $row['uname'] ."</td>";
             echo "<td>" . $row['password'] ."</td>";
-            echo "<td><center><form action=owner_rem_w.php method=post>";
+            echo "<td>" . $row['mo'] ."</td>";
+            echo "<td><center><form action=owner_rem_d.php method=post>";
             echo"<input type=hidden name=rem_w value=$row[id]>
             <input type=submit class=remove_w value=>";
             echo "</form></center></td>";
@@ -228,10 +231,11 @@ $result = mysqli_query($con,$sql_query1);
 
  <?php
  if(isset($_POST['submit'])){
- $name = mysqli_real_escape_string($con,$_POST['name']);
- $username = mysqli_real_escape_string($con,$_POST['username']);
+ $name = mysqli_real_escape_string($con,$_POST['full_name']);
+ $username = mysqli_real_escape_string($con,$_POST['uname']);
  $password = mysqli_real_escape_string($con,$_POST['password']);
- $sql_query_insert = "INSERT INTO waiters(name, username, password) values ('$name','$username','$password')";
+  $mo = mysqli_real_escape_string($con,$_POST['mo']);
+ $sql_query_insert = "INSERT INTO delivary_guys(full_name, uname, password, mo) values ('$name','$username','$password','$mo')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {

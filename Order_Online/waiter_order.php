@@ -84,6 +84,12 @@ if ($o_id=='') {
   margin-top: 5px;
   padding-top: 10px;
 }
+.add_btn{
+  background-color: rgb(0, 35, 55);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+}
 
  @media screen and (max-width: 500px) {
    .header a {
@@ -111,7 +117,6 @@ if ($o_id=='') {
    </div>
    Order ID : <?php echo "$o_id"; ?>
  </div>
- <a href="manager.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;" >Back to Managers Dashboard</a>
 
 <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Verity of Aviable Dishes"/>
  <div class="Dlist">
@@ -173,7 +178,7 @@ $result = mysqli_query($con,$sql_query1);
              <form method=post action="">
              <input type="hidden" name="id" id="id"><br>
              <input type="number" name="qty" value="" placeholder="Qty.">
-             <input type=submit id=atp name=atp value="Add to Pan" class="atp">
+             <input type=submit id=atp name=atp class="add_btn" value="Add to Cart" class="atp">
              </form>
          </div>
          <div class="modal-footer">

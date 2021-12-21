@@ -9,6 +9,7 @@ include '../config/config1.php';
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/8b3aa3d333.js"></script>
 <link rel="stylesheet" href="../meta/logo.css">
  <style>
  * {box-sizing: border-box;}
@@ -237,6 +238,7 @@ $result = mysqli_query($con,$sql_query1);
       $ctno=$row['tno'];
       $address=$row['address'];
 $mo=$row['mo'];
+$d_guy=$row['d_guy'];
 if ($ctno=="999") {
 $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
 }
@@ -269,6 +271,16 @@ $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order
       }
    ?>
   <center><img src="<?php echo "$statusimg"; ?>" alt="" class="status_pic"></center>
+  <?php if ($d_guy!="") {
+    echo "<center><b>Will be Delivered Soon By : </b> $d_guy<br>";
+    $sql_query_d_guy = "SELECT * FROM `delivary_guys` WHERE full_name='".$d_guy."'";
+$result_d_guy = mysqli_query($con,$sql_query_d_guy);
+while($row = mysqli_fetch_assoc($result_d_guy))
+{
+$d_guy_cno=$row['mo'];
+}
+?><i class="fa fa-phone-square" style=" color: rgb(52, 205, 71)" aria-hidden="true"></i> <?php echo "<a href=tel:$d_guy_cno>$d_guy_cno</a></center>";
+  } ?>
 </div>
  <div class="Dlist">
 

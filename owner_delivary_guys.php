@@ -240,6 +240,12 @@ $result = mysqli_query($con,$sql_query1);
   if($result_insert==0)
   {
     echo "not inserted";
+    ?><script>
+
+ alert("Unsucessfull");
+ window.location.href = "owner_delivary_guys.php";
+ </script>
+<?php
 
   }
   else
@@ -248,6 +254,7 @@ $result = mysqli_query($con,$sql_query1);
     ?><script>
 
              alert("Sucessfull");
+             window.location.href = "owner_delivary_guys.php";
              </script>
       <?php
   }

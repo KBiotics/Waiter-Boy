@@ -229,6 +229,12 @@ $result = mysqli_query($con,$sql_query1);
   if($result_insert==0)
   {
     echo "not inserted";
+    ?><script>
+
+             alert("Uncessfull");
+             window.location.href = "owner_Menu.php";
+             </script>
+      <?php
 
   }
   else
@@ -237,6 +243,7 @@ $result = mysqli_query($con,$sql_query1);
     ?><script>
 
              alert("Sucessfull");
+             window.location.href = "owner_Menu.php";
              </script>
       <?php
   }

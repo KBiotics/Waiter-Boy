@@ -354,6 +354,12 @@ $result_s = mysqli_query($con,$sql_query_s);
       if($result_update==0)
       {
         echo "not updated";
+        ?><script>
+
+ alert("Unsucessfull");
+ window.location.href = "manager_Menu.php";
+ </script>
+<?php
 
       }
       else
@@ -362,6 +368,7 @@ $result_s = mysqli_query($con,$sql_query_s);
         ?><script>
 
                  alert("sucessfully updated");
+                 window.location.href = "manager_Menu.php";
                  </script>
           <?php
       }?><?php

@@ -370,6 +370,12 @@ document.getElementById("tplates").value = num1 * num2;
       if($result_update==0)
       {
         echo "not updated";
+        ?><script>
+
+         alert("Unsucessfull");
+         window.location.href = "owner_stock.php";
+         </script>
+  <?php
 
       }
       else
@@ -377,7 +383,8 @@ document.getElementById("tplates").value = num1 * num2;
         //echo "sucessfully updated";
         ?><script>
 
-                 alert("sucessfully updated");
+                 alert("Sucessfull");
+                 window.location.href = "owner_stock.php";
                  </script>
           <?php
       }?><?php

@@ -160,6 +160,7 @@ $result = mysqli_query($con,$sql_query1);
         $ctno=$row['tno'];
         $address=$row['address'];
         $mo=$row['mo'];
+        $d_guy=$row['d_guy'];
         if ($ctno=="999") {
           $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address : $address <br> Mo. <a href=tel:$mo>$mo</a><br>Attempted By : $d_guy";
         }
@@ -203,7 +204,6 @@ $pay_method=$row['pay_m'];
 $pay_ref="";
 $pay_ref1=$row['pay_l'];
 $pay_ref2=$row['manager'];
-$d_guy=$row['d_guy'];
 if ($pay_ref1=='') {
   $pay_ref="$pay_ref2";
 }

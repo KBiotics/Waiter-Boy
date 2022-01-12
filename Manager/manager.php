@@ -147,7 +147,7 @@ if ($Attname=='') {
 <a href="waiter_index.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;">Instant Order (Direct)</a><br><br><br>
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='' ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Order in Progress' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -161,6 +161,9 @@ $result = mysqli_query($con,$sql_query1);
         $address=$row['address'];
         $mo=$row['mo'];
         $d_guy=$row['d_guy'];
+        if ($mo!="" and $address=="") {
+          $ctno="$ctno <lable style=background:#3eff00;color:#ffffff;padding:2px;>(Dine-In Online Order) </lable><br>Mo. <a href=tel:$mo>$mo</a>";
+        }
         if ($ctno=="999") {
           $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address : $address <br> Mo. <a href=tel:$mo>$mo</a><br>Attempted By : $d_guy";
         }

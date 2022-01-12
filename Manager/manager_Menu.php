@@ -326,7 +326,12 @@ $result_s = mysqli_query($con,$sql_query_s);
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {
-    echo "not inserted";
+    ?><script>
+
+             alert("Unsucessfull");
+             window.location.href = "manager_Menu.php";
+             </script>
+      <?php
 
   }
   else
@@ -335,6 +340,7 @@ $result_s = mysqli_query($con,$sql_query_s);
     ?><script>
 
              alert("Sucessfull");
+             window.location.href = "manager_Menu.php";
              </script>
       <?php
   }

@@ -63,8 +63,9 @@ margin-top: -50px;
 
             <p>the page you are looking for not avaible!</p>
 
-            <center><a href="Order_Online" class="link_404"> <i class="fa fa-cutlery" aria-hidden="true" style=" font-size: 50px; color: #ff0048"></i><br> New Order</a>
-            <a href="App" class="link_404"><i class="fa fa-truck" aria-hidden="true" style=" font-size: 50px; color: #7500ff"></i><br>Track Order</a></center>
+            <center><a style="text-decoration: none;" href="Order_Online" class="link_404"> <i class="fa fa-cutlery" aria-hidden="true" style=" font-size: 50px; color: #ff0048"></i><br> New Order <br> Home Delivery</a>
+            <a style="text-decoration: none; " href="Order_Online_Dine_In" class="link_404"> <i class="fa fa-cutlery" aria-hidden="true" style=" font-size: 50px; color: #00d6ff;"></i><br> New Order <br>Dine - In</a>
+            <a style="text-decoration: none;" href="App" class="link_404"><i class="fa fa-truck" aria-hidden="true" style=" font-size: 50px; color: #7500ff"></i><br>Track Order<br>All</a></center>
           </div>
         </div>
       </div>

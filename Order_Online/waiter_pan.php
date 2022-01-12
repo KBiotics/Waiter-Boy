@@ -287,8 +287,9 @@ if ($o_id=='') {
                            }
                            $fprice12=$qty12*$D12P;
 
-                           $total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
-
+                           $total_w_tax=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+                           $total_tax=($total_w_tax*0.04);
+                           $total=$total_tax+$total_w_tax;
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <div style="overflow-x:auto;">
@@ -366,7 +367,7 @@ if ($o_id=='') {
         <tr class="tr_total" style="background-color:#3fff00">
           <td>Total</td>
           <td></td>
-          <td><?php echo "$total"; ?></td>
+          <td><?php echo "$total_w_tax + ( Other Handling Charges : $total_tax ) = ₹ $total"; ?></td>
         </tr>
 
     </table>
@@ -394,9 +395,9 @@ $cname=$cname;
 $total=$total
  ?>
  <?php
- if ($status=="Confirmed") {
+ if ($status!="Order in Progress") {
    ?>
-   <center><a href="track_order.php" class="confirm">Order Placed Sucessfully <br> Track Here</a></center>
+   <center><a href="track_order.php" class="confirm">Order Placed Sucessfully <br>Click here to Track</a></center>
    <?php
  }
  else {?>

@@ -271,6 +271,10 @@ $ctno=" $address <br> Mo. <a href=tel:$mo>$mo</a>";
         $status_s="";
       }
       $statusimg='blank';
+
+      if ($status=='Order in Progress') {
+        $statusimg='../meta/in_progress.gif';
+      }
       if ($status=='Confirmed') {
         $statusimg='../meta/bell.png';
       }
@@ -535,7 +539,9 @@ $D12P=0;
                              $fD_name12="$qty12 $D12N $D12P x $qty12= $fprice12";
                            }
 
-                           $total=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+                           $total_w_tax=$fprice1+$fprice2+$fprice3+$fprice4+$fprice5+$fprice6+$fprice7+$fprice8+$fprice9+$fprice10+$fprice11+$fprice12;
+                           $total_tax=($total_w_tax*0.04);
+                           $total=$total_tax+$total_w_tax;
         echo "<td class=card>";
         echo  "Order ID : ".$o_id."<br>";
             echo  $cname."<br>" ;
@@ -554,7 +560,7 @@ $D12P=0;
             echo  "$fD_name10"."<br>" ;
             echo  "$fD_name11"."<br>" ;
             echo  "$fD_name12"."<br>" ;
-            echo  "Total : ₹$total"."<br>" ;
+            echo  "Total : $total_w_tax + ( Other Handling Charges : $total_tax ) = ₹ $total"."<br>" ;
 
             echo "<center><form action=payment\pay.php method=post >";
             echo "<input type=hidden name=o_id value=$o_id>";
@@ -564,7 +570,7 @@ $D12P=0;
               echo "<img src=../meta/paid.png alt=Paid class=status_paid>";
             }
             else {
-            echo "<input type=submit name=submit class=complet value=Pay_Now_with_Razorpay $status_s>";
+            echo "<input type=submit name=submit class=complet value='Pay Now with Razorpay' $status_s>";
             echo "</form></center>";
             echo "</td>";
             $_SESSION["attname"]="SELF $cname";

@@ -138,7 +138,7 @@ if ($Attname=='') {
  <body>
 
  <div class="header">
-   <a href="manager.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
+   <a href="owner.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
      <a href="owner.php">Home <img src="meta//home.png" alt="" height"50" width="50"></a>
      <a href="owner_manager.php">Managers <img src="meta//manager.png" alt="" height"50" width="50"></a>

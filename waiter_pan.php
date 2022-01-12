@@ -151,6 +151,7 @@ if ($Attname=='') {
    $qty10=$row['qty10'];
    $qty11=$row['qty11'];
    $qty12=$row['qty12'];
+   $status_order=$row['status'];
    }
    $D1P=0;
    $D2P=0;
@@ -400,8 +401,17 @@ if ($Attname=='') {
    </script>
 
 <form method=post action="">
+  <?php
+if ($status_order=="") {
+  $status_order="value='Confirm Order'";
+}
+else {
+
+  $status_order="value='$status_order' disabled";
+}
+ ?>
 <input type="hidden" name="status" value="Confirmed"><br>
-<center><input type=submit name=order class="confirm" value="Confirm Order"></center>
+<center><input type=submit name=order class="confirm" <?php echo $status_order ?>></center>
 </form>
  </div>
 

@@ -392,7 +392,7 @@ if ($Attname=='') {
 
 <form method=post action="">
   <?php
-  if ($status_order=="") {
+  if ($status_order=="Order in Progress") {
     $status_order="value='Confirm Order'";
   }
   else {

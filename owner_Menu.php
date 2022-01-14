@@ -189,13 +189,24 @@ $result = mysqli_query($con,$sql_query1);
       <tbody id="myTable">
     <?php while($row = mysqli_fetch_assoc($result))
       {
-        echo "<tr>";
-        echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['Dname'] . "</td>";
-            echo "<td>" . $row['Dprice'] ."</td>";
-            echo "<td>" . $row['mang_stock'] ."</td>";
-        //echo "<td>" . $row['lname'] . "</td>";
+        $id_d=$row['id'];
+        $Dname_d=$row['Dname'];
+        $Dprice_d=$row['Dprice'];
+        $mang_stock_id_d=$row['mang_stock_id'];
+        // get mang stock name
+         $sql_query_s_stock = "SELECT * FROM `stock` WHERE id='".$mang_stock_id_d."'";
+         $result_s_stock = mysqli_query($con,$sql_query_s_stock);
 
+           while($row = mysqli_fetch_assoc($result_s_stock))
+            {
+              $stock_lable=$row['s_name'];
+            }
+
+        echo "<tr>";
+        echo "<td>" . $id_d . "</td>";
+            echo "<td>" . $Dname_d . "</td>";
+            echo "<td>" . $Dprice_d ."</td>";
+            echo "<td>" . $stock_lable ."</td>";
             echo "</tr>";
       }?>
     </table>

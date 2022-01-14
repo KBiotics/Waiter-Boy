@@ -127,7 +127,7 @@ include 'config/config1.php';
 <br><br><br>
  <div class="Dlist">
    <?php
-   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' AND status!='Out for Delivery' AND status!='Delivered' ORDER BY id DESC ";
+   $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' AND status!='Order in Progress' AND status!='Out for Delivery' AND status!='Delivered' ORDER BY id DESC ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">

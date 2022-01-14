@@ -402,7 +402,7 @@ if ($Attname=='') {
 
 <form method=post action="">
   <?php
-if ($status_order=="") {
+if ($status_order=="Order in Progress") {
   $status_order="value='Confirm Order'";
 }
 else {
@@ -456,28 +456,11 @@ if(isset($_POST['order'])){
    }
    else
    {
-     $s_tps_new=5;
-     $stock="1";
-     $sql_query_update_stock = "UPDATE stock SET s_tps='".$s_tps_new."' WHERE id='".$stock."'";
-     $result_update_stock = mysqli_query($con,$sql_query_update_stock);
-       if($result_update_stock==0)
-       {
-         echo "not updated";
-
-       }
-       else
-       {
-         ?><script>
-
-                  alert("<?php echo "$D1_mang_stock $qty1"; ?>");
-                  </script>
-           <?php
-       }
      //echo "sucessfully updated";
 
      ?><script>
-
               alert("Order sucessfully Placed.");
+              window.location.href = "waiter_pan.php";
               </script>
        <?php
    }?>

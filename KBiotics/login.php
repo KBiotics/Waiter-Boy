@@ -289,6 +289,8 @@ if(isset($_POST['alogin'])){
 		if($row!=0){
 			do
 			{
+        $Attname=$row['name'];
+          $_SESSION["attname"]=$Attname;
 						    ?>  <script>
 
               window.location.href = "new_owner.php";

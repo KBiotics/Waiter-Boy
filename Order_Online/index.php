@@ -1,5 +1,32 @@
 <?php
 include '../config/config1.php';
+$sql_query_r = "SELECT * FROM `admin` WHERE id='1'";
+$result2_r = mysqli_query($con,$sql_query_r);
+while($row = mysqli_fetch_assoc($result2_r))
+  {
+    $fsite_rd=$row['fsite'];
+    $odh_site_rd=$row['odh_site'];
+    $odd_site_rd=$row['odd_site'];
+  }
+  if ($fsite_rd!='E') {
+    ?><script>
+
+             alert("Site Has been Temporarily Down ! \n This thing may happens due to your Subscription for this Software has been Ended ! \n Please Contact KBiotics.org to Renew the Subscription.");
+             </script>
+             <a style=" font-size: 50px " href="https://kbiotics.org/">Click to Contact KBiotics</a><br>
+             <h2>OR</h2><hr>
+             <label style=" font-size: 20px " for="">Visit : https://kbiotics.org/</label>
+      <?php
+  }
+  elseif ($odh_site_rd!='E') {
+    ?><script>
+
+             alert("Home delivary is Unavailable in your Area !");
+             window.location.href = "../lost.php";
+             </script>
+      <?php
+  }
+  else {
  ?>
 
  <!DOCTYPE html>
@@ -174,4 +201,5 @@ include '../config/config1.php';
   }
 
   }
+}
   ?>

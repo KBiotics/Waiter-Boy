@@ -14,6 +14,7 @@ if(isset($_POST['atp'])){
           $result = mysqli_query($con,$sql_query1);
       while($row = mysqli_fetch_assoc($result))
       {
+        $status_order=$row['status'];
        $D_temp=$row['D_temp'];
        $qty_temp=$row['qty_temp'];
 
@@ -24,6 +25,19 @@ if(isset($_POST['atp'])){
       $D="$D$D_temp";
       $qty="$qty$qty_temp";
 
+if ($status_order!="Order in Progress") {
+  $_SESSION["order_id"]=$o_id;
+  ?><script>
+
+           alert("Order has Confirmed Allready ! \n To Order more Start a New Order.");
+           </script>
+    <?php
+    ?>    <script>
+         window.location.href = "waiter_order.php";
+          </script>
+      <?php
+}
+else {
  $Dname = mysqli_real_escape_string($con,$_POST['id']);
  $qtyo = mysqli_real_escape_string($con,$_POST['qty']);
  $sql_query_update = "UPDATE cstmr SET $D='".$Dname."' ,$qty='".$qtyo."' ,D_temp='".$D_temp."' ,qty_temp='".$qty_temp."' WHERE id='".$o_id."'";
@@ -37,7 +51,7 @@ if(isset($_POST['atp'])){
               </script>
        <?php
        ?>    <script>
-            window.location.href = "waiter_order2.php";
+            window.location.href = "waiter_order.php";
              </script>
          <?php
 
@@ -71,10 +85,12 @@ if(isset($_POST['atp'])){
               </script>
        <?php
        ?>    <script>
-            window.location.href = "waiter_order2.php";
+            window.location.href = "waiter_order.php";
              </script>
          <?php
-   }?>
+   }
+   }
+?>
    <div class="pan">
      <?php echo $D_temp ?>
    </div>

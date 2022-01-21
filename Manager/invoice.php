@@ -7,6 +7,7 @@ $o_id=mysqli_real_escape_string($con,$_POST['o_id']);
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>Invoice</title>
     <style media="screen">
@@ -49,6 +50,15 @@ td{
 .status_paid{
  height: 50%;
  width: 50%;
+}
+.print{
+  padding: 50px;
+  width: 100%;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 50px;
+  background-color: #00ff7c
 }
 @media print {
   th{
@@ -352,7 +362,7 @@ td{
                  else {
                    echo "<br><lable>Scan QR to Pay Online</lable>";
                    echo "<br><img src=../meta/Payment_QR.png alt=pqr height=100 width=100>";
-                  echo "<h1>Thank You!</h1>";
+                  echo "<h1>Thank You! <br><button class='print' onclick=window.print()>Print</button></h1>";
                  echo "</td>";
                }
            }?>

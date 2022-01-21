@@ -2,7 +2,7 @@
 include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
-  header("location:index.php");
+  header("location:manager.php");
 }
 $o_id="";
 $o_id1=$Dname = mysqli_real_escape_string($con,$_POST['o_id']);

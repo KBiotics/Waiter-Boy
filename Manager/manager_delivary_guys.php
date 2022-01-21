@@ -2,7 +2,7 @@
 include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
-  header("location:index.php");
+  header("location:manager.php");
 }
  ?>
 
@@ -137,6 +137,7 @@ if ($Attname=='') {
      <a  href="manager.php">Home<img src="../meta//home.png" alt="" height"50" width="50"></a>
      <a href="manager_Menu.php">Menu <img src="../meta//menu.png" alt="" height"50" width="50"></a>
      <a href="manager_waiters.php">Waiters<img src="../meta//waiter.png" alt="" height"50" width="50"></a>
+     <a href="manager_stock.php">Stocks<img src="../meta//stock.png" alt="" height"50" width="50"></a>
      <a class="active" href="manager_delivary_guys.php">Delivary Guys<img src="../meta//Out for Delivery.png" alt="" height"50" width="50"></a>
    </div>
  </div>

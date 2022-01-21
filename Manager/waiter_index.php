@@ -2,7 +2,7 @@
 include '../config/config1.php';
 $Attname=$_SESSION["attname"];
 if ($Attname=='') {
-  header("location:index.php");
+  header("location:manager.php");
 }
  ?>
 

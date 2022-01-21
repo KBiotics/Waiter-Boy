@@ -140,17 +140,17 @@ if ($Attname=='') {
  <div class="header">
    <a href="manager.php" class="logo"><img src="../meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a  href="manager.php">Home<img src="../meta//home.png" alt="" height"50" width="50"></a>
-     <a class="active" href="manager_Menu.php">Menu <img src="../meta//menu.png" alt="" height"50" width="50"></a>
+     <a href="manager.php">Home<img src="../meta//home.png" alt="" height"50" width="50"></a>
+     <a href="manager_Menu.php">Menu <img src="../meta//menu.png" alt="" height"50" width="50"></a>
      <a href="manager_waiters.php">Waiters<img src="../meta//waiter.png" alt="" height"50" width="50"></a>
-     <a href="manager_stock.php">Stocks<img src="../meta//stock.png" alt="" height"50" width="50"></a>
+     <a class="active" href="manager_stock.php">Stocks<img src="../meta//stock.png" alt="" height"50" width="50"></a>
      <a href="manager_delivary_guys.php">Delivary Guys<img src="../meta//Out for Delivery.png" alt="" height"50" width="50"></a>
    </div>
  </div>
 
  <div class="container">
    <!-- Trigger the modal with a button -->
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Menu</button>
+   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Stock Name</button>
 
    <!-- Modal -->
    <div class="modal fade" id="myModal" role="dialog">
@@ -158,26 +158,25 @@ if ($Attname=='') {
        <div class="modal-content">
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">Add New Dish to Menu</h4>
+           <h4 class="modal-title">Add New Stock to Menu</h4>
          </div>
          <div class="modal-body">
-           <center>New Dish<center>
+           <center>New Stock<center>
              <form class="" action="" method="post">
-               <input type="text" class="Dname" name="Dname" value="" placeholder="Dish Name" required>
-               <input type="text" class="Dprice" name="Dprice" value="" placeholder="Price" required>
-<?php
-$sql_query_s = "SELECT * FROM `stock` ";
-$result_s = mysqli_query($con,$sql_query_s);
- ?>
-<select class="Dname" name="mang_stock">
-  <?php while($row_s = mysqli_fetch_array($result_s)):;?>
-    <?php $option_id=$row_s['0'];  $option=$row_s['1'] ?>
-  <option value="<?php echo $option_id?>"><?php echo $option ?></option>
-<?php endwhile?>
-</select>
-
+               <input type="text" class="Sname" name="s_name" value="" placeholder="Stock Name" required>
+               <input type="text" id="firstNumber" class="s_kg" name="s_kg" value="" placeholder="Qty in Kg." onkeyup="multiplyBy()" required>
+               <input type="text" id="secondNumber" class="s_pkg" name="s_pkg" value="" placeholder="Plates per Kg." onkeyup="multiplyBy()" required>
+               <input type="text" id="result" class="s_tps" name="s_tps" value="" placeholder="Total Plates" required>
                <input type="submit" class="submit" name="submit" value="Submit">
              </form>
+             <script type="text/javascript">
+             function multiplyBy()
+{
+      num1 = document.getElementById("firstNumber").value;
+      num2 = document.getElementById("secondNumber").value;
+      document.getElementById("result").value = num1 * num2;
+}
+             </script>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -188,22 +187,26 @@ $result_s = mysqli_query($con,$sql_query_s);
  </div>
 
  <div class="Dlist">
-   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Verity of Aviable Dishes"/>
+   <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Available Stocks"/>
    <?php
-   $sql_query1 = "SELECT * FROM `menu` ";
+   $sql_query1 = "SELECT * FROM `stock` ";
 $result = mysqli_query($con,$sql_query1);
     ?>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <div style="overflow-x:auto;">
     <table table id="table" class="table table-bordered table-striped mb-0">
-      <col style="width:15%">
-      <col style="width:50%">
-      <col style="width:20%">
+      <col style="width:9%">
+      <col style="width:30%">
+      <col style="width:17%">
+      <col style="width:17%">
+      <col style="width:17%">
       <col style="width:10%">
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th> ₹ Price</th>
+        <th> Stock in Kg</th>
+        <th> Plates Per Kg</th>
+        <th> Available Plates</th>
         <th> Modify</th>
       <!-- <th>Last Name</th> -->
      </tr>
@@ -211,9 +214,17 @@ $result = mysqli_query($con,$sql_query1);
     <?php while($row = mysqli_fetch_assoc($result))
       {
         echo "<tr>";
+        $total_plates=$row['s_tps'];
+        $total_a_kg=$row['s_kg'];
+        $plates_per_kg=$row['s_pkg'];
+        $pkg=1000;
+        $remaing_kg=(($pkg/$plates_per_kg)*$total_plates)/1000;
+
         echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['Dname'] . "</td>";
-            echo "<td>" . $row['Dprice'] ."</td>";
+            echo "<td>" . $row['s_name'] . "</td>";
+            echo "<td>" . $remaing_kg ."</td>";
+            echo "<td>" . $row['s_pkg'] ."</td>";
+            echo "<td>" . $row['s_tps'] ."</td>";
             echo "<td> <input type=radio name= value=></td>";
             echo "</tr>";
       }?>
@@ -257,14 +268,15 @@ $result = mysqli_query($con,$sql_query1);
  if(isset($_POST['idcall'])){
  $id_m = mysqli_real_escape_string($con,$_POST['id']);
  echo "$id_m";
- $sql_query_v = "SELECT * FROM `menu` WHERE id='".$id_m."' ";
+ $sql_query_v = "SELECT * FROM `stock` WHERE id='".$id_m."' ";
 $result_v = mysqli_query($con,$sql_query_v);
  while($row = mysqli_fetch_assoc($result_v))
    {
       $id=$row['id'];
-      $Dname=$row['Dname'];
-      $Dprice=$row['Dprice'];
-      $stock_id=$row['mang_stock_id'];
+      $s_name = $row['s_name'];
+      $s_kg = $row['s_kg'];
+      $s_pkg = $row['s_pkg'];
+      $s_tps = $row['s_tps'];
    }
    ?>
    <input type="hidden" id=auth-button class="btn btn-info" btn-lg data-toggle="modal" data-target="#myModal2" name="" value="">
@@ -288,25 +300,25 @@ document.addEventListener('DOMContentLoaded', function() {
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h4 class="modal-title">Modify Dish to Menu</h4>
+         <h4 class="modal-title">Modify Stock</h4>
        </div>
        <div class="modal-body">
          <center>Modify Dish<center>
            <form class="" action="" method="post">
              <input type="hidden" name="id" value="<?php echo "$id"; ?>">
-             <input type="text" class="Dname" name="Dname" value="<?php echo "$Dname"; ?>" placeholder="Dish Name" required>
-             <input type="text" class="Dprice" name="Dprice" value="<?php echo "$Dprice" ?>" placeholder="Price" required>
-<?php
-$sql_query_s = "SELECT * FROM `stock` ";
-$result_s = mysqli_query($con,$sql_query_s);
- ?>
-<select class="Dname" name="mang_stock">
-  <?php while($row_s = mysqli_fetch_array($result_s)):;?>
-    <?php $option_id=$row_s['0'];  $option=$row_s['1'] ?>
-  <option value="<?php echo $option_id?>" <?php if ($stock_id==$option_id) {echo "selected";} ?> ><?php echo $option ?></option>
-<?php endwhile?>
-</select>
+             <input type="text" class="Sname" name="s_name" value="<?php echo $s_name ?>" placeholder="Stock Name" required>
+             <input type="text" id="kg" class="s_kg" name="s_kg" value="<?php echo $s_kg ?>" placeholder="Qty in Kg." onkeyup="platesTotal()" required>
+             <input type="text" id="kgplates" class="s_pkg" name="s_pkg" value="<?php echo $s_pkg ?>" placeholder="Plates per Kg." onkeyup="platesTotal()" required>
+             <input type="text" id="tplates" class="s_tps" name="s_tps" value="<?php echo $s_tps ?>" placeholder="Total Plates" required>
              <input type="submit" class="submit" name="update" value="Submit">
+             <script type="text/javascript">
+function platesTotal()
+{
+num1 = document.getElementById("kg").value;
+num2 = document.getElementById("kgplates").value;
+document.getElementById("tplates").value = num1 * num2;
+}
+</script>
            </form>
        </div>
        <div class="modal-footer">
@@ -319,18 +331,19 @@ $result_s = mysqli_query($con,$sql_query_s);
 
  <?php
  if(isset($_POST['submit'])){
- $Dname = mysqli_real_escape_string($con,$_POST['Dname']);
- $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
- $mang_stock = mysqli_real_escape_string($con,$_POST['mang_stock']);
+ $s_name = mysqli_real_escape_string($con,$_POST['s_name']);
+ $s_kg = mysqli_real_escape_string($con,$_POST['s_kg']);
+ $s_pkg = mysqli_real_escape_string($con,$_POST['s_pkg']);
+ $s_tps = mysqli_real_escape_string($con,$_POST['s_tps']);
  $Stackt = "a";
- $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock_id, StackT) values ('$Dname',' $Dprice',' $mang_stock','$Stackt')";
+ $sql_query_insert = "INSERT INTO `stock`(`s_name`, `s_kg`, `s_pkg`, `s_tps`) values ('$s_name',' $s_kg','$s_pkg','$s_tps')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {
     ?><script>
 
              alert("Unsucessfull");
-             window.location.href = "manager_Menu.php";
+             window.location.href = "manager_stock.php";
              </script>
       <?php
 
@@ -341,7 +354,7 @@ $result_s = mysqli_query($con,$sql_query_s);
     ?><script>
 
              alert("Sucessfull");
-             window.location.href = "manager_Menu.php";
+             window.location.href = "manager_stock.php";
              </script>
       <?php
   }
@@ -352,21 +365,22 @@ $result_s = mysqli_query($con,$sql_query_s);
   <?php
   if(isset($_POST['update'])){
     $Did = mysqli_real_escape_string($con,$_POST['id']);
-    $Dname = mysqli_real_escape_string($con,$_POST['Dname']);
-    $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
-    $mang_stock = mysqli_real_escape_string($con,$_POST['mang_stock']);
+    $s_name = mysqli_real_escape_string($con,$_POST['s_name']);
+    $s_kg = mysqli_real_escape_string($con,$_POST['s_kg']);
+    $s_pkg = mysqli_real_escape_string($con,$_POST['s_pkg']);
+    $s_tps = mysqli_real_escape_string($con,$_POST['s_tps']);
     echo "$Did";
-    $sql_query_update = "UPDATE menu SET Dname='".$Dname."' ,Dprice='".$Dprice."' ,mang_stock_id='".$mang_stock."' WHERE id='".$Did."'";
+    $sql_query_update = "UPDATE stock SET s_name='".$s_name."' ,s_kg='".$s_kg."' ,s_pkg='".$s_pkg."' ,s_tps='".$s_tps."' WHERE id='".$Did."'";
     $result_update = mysqli_query($con,$sql_query_update);
       if($result_update==0)
       {
         echo "not updated";
         ?><script>
 
- alert("Unsucessfull");
- window.location.href = "manager_Menu.php";
- </script>
-<?php
+         alert("Unsucessfull");
+         window.location.href = "manager_stock.php";
+         </script>
+  <?php
 
       }
       else
@@ -374,8 +388,8 @@ $result_s = mysqli_query($con,$sql_query_s);
         //echo "sucessfully updated";
         ?><script>
 
-                 alert("sucessfully updated");
-                 window.location.href = "manager_Menu.php";
+                 alert("Sucessfull");
+                 window.location.href = "manager_stock.php";
                  </script>
           <?php
       }?><?php

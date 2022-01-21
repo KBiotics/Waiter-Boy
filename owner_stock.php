@@ -219,7 +219,7 @@ $result = mysqli_query($con,$sql_query1);
         $total_a_kg=$row['s_kg'];
         $plates_per_kg=$row['s_pkg'];
         $pkg=1000;
-        $remaing_kg=(($pkg/$plates_per_kg)*$total_plates)/100;
+        $remaing_kg=(($pkg/$plates_per_kg)*$total_plates)/1000;
 
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['s_name'] . "</td>";
@@ -333,7 +333,7 @@ document.getElementById("tplates").value = num1 * num2;
  <?php
  if(isset($_POST['submit'])){
  $s_name = mysqli_real_escape_string($con,$_POST['s_name']);
- $s_kg = mysqli_real_escape_string($con,$_POST['s_kg'])*1000;
+ $s_kg = mysqli_real_escape_string($con,$_POST['s_kg']);
  $s_pkg = mysqli_real_escape_string($con,$_POST['s_pkg']);
  $s_tps = mysqli_real_escape_string($con,$_POST['s_tps']);
  $Stackt = "a";

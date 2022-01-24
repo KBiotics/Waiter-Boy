@@ -136,8 +136,28 @@ if ($Attname=='') {
 
 <div class="u_tab">
   <?php echo "<b>Welcome</b> <p>$Attname" ?>
-    <center>click <img src="../meta/refresh.png" width="15" height="15" alt=""> icon to start notification voice.</center>
+    <center>click <img src="../meta/refresh.png" id="refresh" width="15" height="15" alt=""> icon to start notification voice.</center>
 </div><br>
+<form class="" action="auto_sound.php" method="post">
+  <input type="submit" style="display: none; " id="auto_sound" name="auto_sound" value="1">
+</form>
+<?php
+$sql_query_sound = "SELECT * FROM `control` WHERE id='1' ";
+$result_sound = mysqli_query($con,$sql_query_sound);
+while($row = mysqli_fetch_assoc($result_sound))
+  {
+    $cook_sound=$row['delivery_boy_sound'];
+  }
+  if ($cook_sound !='1') {
+    ?>
+    <script type="text/javascript">
+    window.onload = function(){
+      document.getElementById('auto_sound').click();
+    }
+    <?php
+  }
+ ?>
+</script>
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Delivered' AND status!='' AND tno='999' ORDER BY id DESC ";
@@ -403,7 +423,7 @@ $D12P=0;
 
                            if ($order_music=='Ready') {
                              echo  "<audio autoplay loop>
-  <source src=../meta/new_order.mp3 type=audio/mpeg >
+  <source src=../meta/delivery_new_order.mp3 type=audio/mpeg >
 </audio>" ;
                            }
         echo "<td class=card>";

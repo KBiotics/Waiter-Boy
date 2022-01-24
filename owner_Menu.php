@@ -141,20 +141,38 @@ if ($Attname=='') {
            <h4 class="modal-title">Add New Dish to Menu</h4>
          </div>
          <div class="modal-body">
-           <center>New Dish<center>
+           <center>New Dish</center>
              <form class="" action="" method="post">
-               <input type="text" class="Dname" name="Dname" value="" placeholder="Dish Name" required>
-               <input type="text" class="Dprice" name="Dprice" value="" placeholder="Price" required>
-               <?php
-               $sql_query_s = "SELECT * FROM `stock` ";
+               <label for="">Dish Name</label><br>
+               <input type="text" class="Dname" name="Dname" value="" placeholder="" required><br>
+               <label for="">Dish Price</label><br>
+               <input type="text" class="Dprice" name="Dprice" value="" placeholder="" pattern="[0-9]{}" required><br>
+               <label for="">Contained Stock Name</label><br>
+<?php
+$sql_query_s = "SELECT * FROM `stock` ";
 $result_s = mysqli_query($con,$sql_query_s);
-                ?>
-               <select class="Dname" name="mang_stock">
-                 <?php while($row_s = mysqli_fetch_array($result_s)):;?>
-                   <?php $option_id=$row_s['0'];  $option=$row_s['1'] ?>
-                 <option value="<?php echo $option_id?>"><?php echo $option ?></option>
-               <?php endwhile?>
-               </select>
+ ?>
+<select class="Dname" name="mang_stock" required>
+  <?php while($row_s = mysqli_fetch_array($result_s)):;?>
+    <?php $option_id=$row_s['0'];  $option=$row_s['1'] ?>
+  <option value="<?php echo $option_id?>"><?php echo $option ?></option>
+<?php endwhile?>
+</select><br>
+
+<label for="">Dish Type</label><br>
+<select class="Dname" name="dish_type" required>
+  <option value=""disabled selected>Select</option>
+<option value="Veg Starters">Veg Starters</option>
+<option value="Non-Veg Starters">Non-Veg Starters</option>
+<option value="Papad / Salad">Papad / Salad</option>
+<option value="Egg">Egg</option>
+<option value="Veg Main Course">Veg Main Course</option>
+<option value="Non-Veg Main Course">Non-Veg Main Course</option>
+<option value="Rice">Rice</option>
+<option value="Dal">Dal</option>
+<option value="Cold Drinks">Cold Drinks</option>
+<option value="Hot Drinks">Hot Drinks</option>
+</select><br>
                <input type="submit" class="submit" name="submit" value="Submit">
              </form>
          </div>
@@ -234,8 +252,9 @@ $result = mysqli_query($con,$sql_query1);
  $Dname = mysqli_real_escape_string($con,$_POST['Dname']);
  $Dprice = mysqli_real_escape_string($con,$_POST['Dprice']);
  $mang_stock = mysqli_real_escape_string($con,$_POST['mang_stock']);
+$dish_type = mysqli_real_escape_string($con,$_POST['dish_type']);
  $Stackt = "a";
- $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock_id, StackT) values ('$Dname',' $Dprice',' $mang_stock','$Stackt')";
+ $sql_query_insert = "INSERT INTO menu(Dname, Dprice, mang_stock, mang_stock_id, StackT) values ('$Dname',' $Dprice',' $dish_type',' $mang_stock','$Stackt')";
  $result_insert = mysqli_query($con,$sql_query_insert);
   if($result_insert==0)
   {

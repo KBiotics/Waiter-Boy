@@ -124,6 +124,66 @@ $_SESSION["order_id"]=$o_id;
  <a href="manager.php" style=" background-color: rgb(255, 45, 45); padding: 10px; border-radius: 10px;" >Back to Managers Dashboard</a>
 
 <input class="search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search for Verity of Aviable Dishes"/>
+
+<button type="button" id="btn0" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> All</button>
+<button type="button" id="btn1" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Veg Starters</button>
+<button type="button" id="btn2" name="button"> <i class="fa fa-leaf" style=" color: #ff0000" aria-hidden="true"></i> Non-Veg Starters</button>
+<button type="button" id="btn3" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Papad / Salad</button>
+<button type="button" id="btn4" name="button"> <i class="fa fa-leaf" style=" color: #ff0000" aria-hidden="true"></i> Egg</button>
+<button type="button" id="btn5" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Veg Main Course</button>
+<button type="button" id="btn6" name="button"> <i class="fa fa-leaf" style=" color: #ff0000" aria-hidden="true"></i> Non-Veg Main Course</button>
+<button type="button" id="btn7" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Rice</button>
+<button type="button" id="btn8" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Dal</button>
+<button type="button" id="btn9" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Cold Drinks</button>
+<button type="button" id="btn10" name="button"> <i class="fa fa-leaf" style=" color: #55ff00" aria-hidden="true"></i> Hot Drinks</button>
+<label for="" style="color:#ff004c">*Select above option to sort menu & hit enter button inside Search Box to show results.</label>
+<script type="text/javascript">
+btn0.onclick = function(){
+  document.getElementById("myInput").value = " ";
+  document.getElementById("myInput").focus();
+}
+  btn1.onclick = function(){
+    document.getElementById("myInput").value = "Veg Starters";
+    document.getElementById("myInput").focus();
+}
+btn2.onclick = function(){
+  document.getElementById("myInput").value = "Non-Veg Starters";
+  document.getElementById("myInput").focus();
+}
+btn3.onclick = function(){
+  document.getElementById("myInput").value = "Papad / Salad";
+  document.getElementById("myInput").focus();
+}
+btn4.onclick = function(){
+  document.getElementById("myInput").value = "Egg";
+  document.getElementById("myInput").focus();
+}
+btn5.onclick = function(){
+  document.getElementById("myInput").value = "Veg Main Course";
+  document.getElementById("myInput").focus();
+}
+btn6.onclick = function(){
+  document.getElementById("myInput").value = "Non-Veg Main Course";
+  document.getElementById("myInput").focus();
+}
+btn7.onclick = function(){
+  document.getElementById("myInput").value = "Rice";
+  document.getElementById("myInput").focus();
+}
+btn8.onclick = function(){
+  document.getElementById("myInput").value = "Dal";
+  document.getElementById("myInput").focus();
+}
+btn9.onclick = function(){
+  document.getElementById("myInput").value = "Cold Drinks";
+  document.getElementById("myInput").focus();
+}
+btn10.onclick = function(){
+  document.getElementById("myInput").value = "Hot Drinks";
+  document.getElementById("myInput").focus();
+}
+</script>
+
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `menu` ";
@@ -149,6 +209,7 @@ $result = mysqli_query($con,$sql_query1);
         echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['Dname'] . "</td>";
             echo "<td>" . $row['Dprice'] ."</td>";
+            echo "<td style='display:none'>" . $row['mang_stock'] ."</td>";
             echo "<td>"."<button type=button class=btn btn-info btn-lg data-toggle=modal data-target=#myModal>+</button>"."</td>";
             echo "</tr>";
       }?>

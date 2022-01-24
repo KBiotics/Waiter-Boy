@@ -121,10 +121,32 @@ include 'config/config1.php';
  <div class="header">
    <a href="cook_index.php" class="logo"><img src="meta/logo.png" alt="logo" class="logo"></a>
    <div class="header-right">
-     <a href="" class="logo"><img src="meta/refresh.png" alt="logo" width="50" height="50" onclick="location.reload();" ></a>
+     <a href="" class="logo"><img src="meta/refresh.png" id="refresh" alt="logo" width="50" height="50" onclick="location.reload();" ></a>
    </div>
  </div>
+
+ <form class="" action="auto_sound.php" method="post">
+   <input type="submit" style="display: none; " id="auto_sound" name="auto_sound" value="1">
+ </form>
 <br><br><br>
+<?php
+$sql_query_sound = "SELECT * FROM `control` WHERE id='1' ";
+$result_sound = mysqli_query($con,$sql_query_sound);
+while($row = mysqli_fetch_assoc($result_sound))
+  {
+    $cook_sound=$row['cook_sound'];
+  }
+  if ($cook_sound !='1') {
+    ?>
+    <script type="text/javascript">
+    window.onload = function(){
+      document.getElementById('auto_sound').click();
+    }
+    <?php
+  }
+ ?>
+</script>
+
  <div class="Dlist">
    <?php
    $sql_query1 = "SELECT * FROM `cstmr` WHERE status!='Served' AND status!='' AND status!='Order in Progress' AND status!='Out for Delivery' AND status!='Delivered' ORDER BY id DESC ";
@@ -144,6 +166,12 @@ if ($ctno=="999") {
   $ctno="<lable style=background:#ff007c;color:#ffffff;padding:2px;> (Online Order) </lable><br> Address: $address <br> Mo. <a href=tel:$mo>$mo</a>";
 }
         $status_s=$row['status'];
+        if ($status_s=='Confirmed') {
+          $myAudioFile = "meta/cook_new_order.mp3";
+echo '<audio autoplay="true" loop style="display:none;">
+         <source src="'.$myAudioFile.'" type="audio/mp3">
+      </audio>';
+        }
         if ($status_s=='Cooking') {
           $status_s="Disabled";
         }
@@ -158,6 +186,7 @@ if ($ctno=="999") {
         else {
           $status_c="";
         }
+
         $sql_query15 = "SELECT * FROM `cstmr` WHERE id='".$o_id."'";
 $result15 = mysqli_query($con,$sql_query15);
 while($row = mysqli_fetch_assoc($result15))
@@ -422,3 +451,8 @@ $D12P=0;
 
  </body>
  </html>
+ <script type="text/javascript">
+ setTimeout(function(){
+  location.reload(); // you can pass true to reload function to ignore the client cache and reload from the server
+},60000);
+ </script>
